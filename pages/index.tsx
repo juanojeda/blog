@@ -1,8 +1,5 @@
-import fs from 'fs';
-import path from 'path';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import matter from 'gray-matter';
 
 interface Post {
   slug: string;
@@ -33,21 +30,8 @@ const Home: React.FC<Props> = ({ posts }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const postsDirectory = path.join(process.cwd(), 'posts');
-  const filenames = fs.readdirSync(postsDirectory);
-
-  const posts = filenames.map((filename) => {
-    const slug = filename.replace(/\.md$/, '');
-    const filePath = path.join(postsDirectory, filename);
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const { data } = matter(fileContents);
-
-    return {
-      slug,
-      title: data?.title,
-      date: data?.date,
-    };
-  });
+  const res = await fetch('http://localhost:3000/api/list-posts');
+  const posts = await res.json();
 
   return {
     props: {

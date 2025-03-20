@@ -10,12 +10,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const posts = filenames.map((filename) => {
     const filePath = path.join(postsDirectory, filename);
     const fileContents = fs.readFileSync(filePath, 'utf8');
-    const { data, content } = matter(fileContents);
+    const { data } = matter(fileContents);
     const slug = filename.replace(/\.md$/, '');
     return {
       slug,
-      frontmatter: data,
-      content,
+      title: data.title,
+      date: data.date,
     };
   });
 

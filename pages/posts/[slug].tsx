@@ -4,10 +4,10 @@ import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 
-const POST_API = 'http://localhost:3000/api/posts';
+const POST_API = 'http://localhost:3000/api/get-post';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(POST_API);
+  const res = await fetch('http://localhost:3000/api/list-posts');
   const posts = await res.json();
   const paths = posts.map((post: any) => ({
     params: { slug: post.slug },
@@ -20,16 +20,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(POST_API);
-  const posts = await res.json();
-  const post = posts.find((post: any) => post.slug === params?.slug);
+  const res = await fetch(`http://localhost:3000/api/get-post?slug=${params?.slug}`);
 
-  const { data, content } = matter(post.content);
+  const post = await res.json();
+
+
+  const { frontmatter, content } = post;
   const htmlContent = marked(content);
 
   return {
     props: {
-      frontmatter: data,
+      frontmatter,
       content: htmlContent,
     },
   };
