@@ -4,14 +4,14 @@ import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 
-const postsDirectory = path.join(process.cwd(), 'posts');
+const POST_API = 'http://localhost:3000/api/posts';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const filenames = fs.readdirSync(postsDirectory);
-  const paths = filenames.map((filename) => {
-    const slug = filename.replace(/\.md$/, '');
-    return { params: { slug } };
-  });
+  const res = await fetch(POST_API);
+  const posts = await res.json();
+  const paths = posts.map((post: any) => ({
+    params: { slug: post.slug },
+  }));
 
   return {
     paths,
@@ -20,10 +20,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const slug = params?.slug as string;
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
+  const res = await fetch(POST_API);
+  const posts = await res.json();
+  const post = posts.find((post: any) => post.slug === params?.slug);
+
+  const { data, content } = matter(post.content);
   const htmlContent = marked(content);
 
   return {
