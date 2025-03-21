@@ -1,0 +1,46 @@
+.h1 {
+  font-size: var(--typography-h1-font-size);
+}
+.h2 {
+  font-size: var(--typography-h2-font-size);
+}
+.h3 {
+  font-size: var(--typography-h3-font-size);
+}
+.h4 {
+  font-size: var(--typography-h4-font-size);
+}
+.h5 {
+  font-size: var(--typography-h5-font-size);
+}
+.h6 {
+  font-size: var(--typography-h6-font-size);
+}
+.b1 {
+  font-size: var(--typography-b1-font-size);
+}
+.b2 {
+  font-size: var(--typography-b2-font-size);
+}
+.b3 {
+  font-size: var(--typography-b3-font-size);
+}
+
+.heading {
+  font-family: var(--font-fira-sans);
+  font-weight: var(--typography-hx-font-weight);
+  line-height: var(--typography-hx-line-height);
+}
+
+.body {
+  font-family: var(--font-merriweather);
+  font-weight: var(--typography-bx-font-weight);
+  line-height: var(--typography-bx-line-height);
+}
+
+.__base {
+  font-family: var(--font-merriweather);
+  font-weight: var(--typography-bx-font-weight);
+  line-height: var(--typography-bx-line-height);
+  font-size: var(--typography-b1-font-size);
+}
