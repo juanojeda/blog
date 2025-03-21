@@ -29,3 +29,9 @@ h5 {
 h6 {
   font-size: var(--typography-h6-font-size);
 }
+
+a {
+  color: var(--typography-link-color);
+  text-decoration: var(--typography-link-decoration);
+  font-weight: var(--typography-link-weight);
+}

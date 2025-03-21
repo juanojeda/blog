@@ -20,4 +20,8 @@
   --typography-b1-font-size: 1rem;
   --typography-b2-font-size: 0.8rem;
   --typography-b3-font-size: 0.64rem;
+
+  --typography-link-color: var(--color-sky-800);
+  --typography-link-decoration: none;
+  --typography-link-weight: 600;
 }

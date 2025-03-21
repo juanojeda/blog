@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { marked } from 'marked';
+import {renderer} from '../../components/typography/markdown-renderer';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch('http://localhost:3000/api/list-posts');
@@ -21,6 +22,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 
   const { frontmatter, content } = post;
+  marked.use({ renderer });
   const htmlContent = marked(content);
 
   return {

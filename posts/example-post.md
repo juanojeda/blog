@@ -3,7 +3,7 @@ title: "Example Post"
 date: "2025-03-20"
 ---
 
-This is an example blog post written in Markdown. It serves as a template for creating new posts in your Next.js blog.
+This is an example blog post written in Markdown. It serves as a template for creating new posts in your [Next.js](www.nextjs.com) blog.
 
 ## Introduction
 
