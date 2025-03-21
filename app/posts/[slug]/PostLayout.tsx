@@ -1,6 +1,6 @@
 "use client";
 
-import typography from "../../../components/typography/_typography.module.css";
+import typography from "@/components/typography/_typography.module.css";
 
 const PostLayout = ({ frontmatter, content }: { frontmatter: any; content: string }) => {
   return (
