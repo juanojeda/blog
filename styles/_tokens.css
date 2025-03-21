@@ -11,15 +11,15 @@
   --typography-hx-font-weight: 200;
   --typography-bx-font-weight: 400;
 
-  --typography-h1-font-size: 3.815rem;
-  --typography-h2-font-size: 3.052rem;
-  --typography-h3-font-size: 2.441rem;
-  --typography-h4-font-size: 1.953rem;
-  --typography-h5-font-size: 1.563rem;
-  --typography-h6-font-size: 1.25rem;
+  --typography-h1-font-size: 2.986rem;
+  --typography-h2-font-size: 2.488rem;
+  --typography-h3-font-size: 2.074rem;
+  --typography-h4-font-size: 1.728rem;
+  --typography-h5-font-size: 1.44rem;
+  --typography-h6-font-size: 1.2rem;
   --typography-b1-font-size: 1rem;
-  --typography-b2-font-size: 0.8rem;
-  --typography-b3-font-size: 0.64rem;
+  --typography-b2-font-size: 0.833rem;
+  --typography-b3-font-size: 0.694rem;
 
   --typography-link-color: var(--color-sky-800);
   --typography-link-decoration: none;
