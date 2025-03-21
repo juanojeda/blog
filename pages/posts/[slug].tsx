@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { marked } from 'marked';
 import {renderer} from '../../components/typography/markdown-renderer';
+import typography from "../../components/typography/_typography.module.css";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch('http://localhost:3000/api/list-posts');
@@ -36,8 +37,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const Post = ({ frontmatter, content }: { frontmatter: any; content: string }) => {
   return (
     <article>
-      <h1>{frontmatter.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <h1 className={`${typography.h1} ${typography.heading}`}>{frontmatter.title}</h1>
+      <div className={typography.marked} dangerouslySetInnerHTML={{ __html: content }} />
     </article>
   );
 };
