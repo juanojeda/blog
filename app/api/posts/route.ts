@@ -11,10 +11,8 @@ export interface Post {
   date: string;
 }
 
-export type ListPostsResponse = NextApiResponse<Post[]>;
-  
+export async function GET() {
 
-export default function handler(req: NextApiRequest, res: ListPostsResponse) {
   const filenames = fs.readdirSync(postsDirectory);
   const posts = filenames.map((filename) => {
     const filePath = path.join(postsDirectory, filename);
@@ -28,5 +26,5 @@ export default function handler(req: NextApiRequest, res: ListPostsResponse) {
     };
   });
 
-  res.status(200).json(posts);
+  return Response.json(posts)
 }

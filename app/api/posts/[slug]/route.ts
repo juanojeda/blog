@@ -5,16 +5,13 @@ import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-interface GetPostQuery extends NextApiRequest {
-  query: {
-    slug: string;
-  }
-}
 
-export default function handler({query: {slug}}: GetPostQuery, res: NextApiResponse) {
+export async function GET(_request: Request, {params}: {params: Promise<{slug: string}>}) { 
+  const { slug } = await params;
+
   const filename = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(filename, 'utf8');
   const { data: frontmatter, content } = matter(fileContents);
 
-  res.status(200).json({slug, frontmatter, content});
+  return Response.json({ slug, frontmatter, content });
 }
