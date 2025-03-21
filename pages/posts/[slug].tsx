@@ -4,8 +4,6 @@ import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 
-const POST_API = 'http://localhost:3000/api/get-post';
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch('http://localhost:3000/api/list-posts');
   const posts = await res.json();

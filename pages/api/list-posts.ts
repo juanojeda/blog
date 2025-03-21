@@ -5,7 +5,16 @@ import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export interface Post {
+  slug: string;
+  title: string;
+  date: string;
+}
+
+export type ListPostsResponse = NextApiResponse<Post[]>;
+  
+
+export default function handler(req: NextApiRequest, res: ListPostsResponse) {
   const filenames = fs.readdirSync(postsDirectory);
   const posts = filenames.map((filename) => {
     const filePath = path.join(postsDirectory, filename);
