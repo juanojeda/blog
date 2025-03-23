@@ -1,5 +1,5 @@
-import { fontVariables } from '@/app/theme';
 import {Merriweather, Fira_Sans, Fira_Code} from 'next/font/google';
+
 
 export const merriweather = Merriweather({
   subsets: ['latin', 'latin-ext'],
