@@ -1,18 +1,18 @@
 'use client'
-import Text from '@/components/Text/Text';
 import Link from 'next/link';
+import Typography from "@mui/material/Typography";
  
 export default function HomePage({ posts }) {
   return (
     <div>
-      <Text as="h1">My Blog</Text>
+      <Typography variant="h1">My Blog</Typography>
       <ul>
         {posts.map((post) => (
           <li key={post.slug}>
             <Link href={`/posts/${post.slug}`}>
               {post.title}
             </Link>
-            <Text>{post.date}</Text>
+            <Typography variant='body1'>{post.date}</Typography>
           </li>
         ))}
       </ul>

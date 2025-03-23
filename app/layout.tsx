@@ -1,13 +1,12 @@
 import {firaCode, firaSans, merriweather} from '@/components/fonts/fonts';import { ThemeProvider } from '@mui/material/styles';
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v15-appRouter"
 import theme from '@/app/theme';
-import typography from '@/components/typography/_typography.module.css'
 import '@/styles/globals.css';
 
 const fontClasses = [
-  merriweather.variable,
   firaSans.variable,
-  firaCode.variable
+  firaCode.variable,
+  merriweather.variable,
 ].join(' ');
 
 export default function RootLayout({
@@ -17,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${fontClasses} ${typography.__base}`}>
+      <body className={`${fontClasses}`}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             {children}

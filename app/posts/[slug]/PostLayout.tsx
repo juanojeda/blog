@@ -1,12 +1,11 @@
 "use client";
-
-import typography from "@/components/typography/_typography.module.css";
+import Typography from "@mui/material/Typography";
 
 const PostLayout = ({ frontmatter, content }: { frontmatter: any; content: string }) => {
   return (
     <article>
-      <h1 className={`${typography.h1} ${typography.heading}`}>{frontmatter.title}</h1>
-      <div className={typography.marked} dangerouslySetInnerHTML={{ __html: content }} />
+      <Typography variant="h1">{frontmatter.title}</Typography>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </article>
   );
 };

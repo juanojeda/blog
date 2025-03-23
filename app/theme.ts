@@ -1,17 +1,35 @@
 'use client';
-import { firaCode, firaSans, merriweather } from '@/components/fonts/fonts';
 import { createTheme } from '@mui/material/styles';
 
-const wrapInVariable = (font) => `var(${font.variable})`;
+export const fontVariables = {
+  merriweather: "--font-merriweather",
+  firaSans: "--font-fira-sans",
+  firaCode: "--font-fira-code",
+}
 
 const theme = createTheme({
   cssVariables: true,
   typography: {
-    fontFamily: [
-      firaSans.variable,
-      merriweather.variable,
-      firaCode.variable
-    ].map(wrapInVariable).join(","),
+    htmlFontSize: 16,
+    fontFamily: `var(${fontVariables.merriweather})`,
+    h1: {
+      fontFamily: `var(${fontVariables.firaSans})`,
+    },
+    h2: {
+      fontFamily: `var(${fontVariables.firaSans})`,
+    },
+    h3: {
+      fontFamily: `var(${fontVariables.firaSans})`,
+    },
+    h4: {
+      fontFamily: `var(${fontVariables.firaSans})`,
+    },
+    h5: {
+      fontFamily: `var(${fontVariables.firaSans})`,
+    },
+    h6: {
+      fontFamily: `var(${fontVariables.firaSans})`,
+    },
   },
 });
 
