@@ -1,6 +1,6 @@
 'use client'
-import Link from 'next/link';
 import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
  
 export default function HomePage({ posts }) {
   return (
