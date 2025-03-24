@@ -1,11 +1,11 @@
 "use client";
 import Typography from "@mui/material/Typography";
 
-const PostLayout = ({ frontmatter, content }: { frontmatter: any; content: string }) => {
+const PostLayout = ({ frontmatter, children }: { frontmatter: any; content: string; children: React.ReactNode }) => {
   return (
     <article>
       <Typography variant="h1">{frontmatter.title}</Typography>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      {children}
     </article>
   );
 };

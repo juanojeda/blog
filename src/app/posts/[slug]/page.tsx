@@ -1,5 +1,4 @@
-import PostLayout, { PostLayout2 } from "./PostLayout";
-import { marked } from 'marked';
+import PostLayout from "./PostLayout";
 
 export async function generateStaticParams() {
   const res = await fetch('http://localhost:3000/api/posts');
@@ -11,7 +10,7 @@ export async function generateStaticParams() {
 
 export default async function Post({params}) {
   const {slug} = await params;
-  const { default: Post } = await import('@/content/' + slug + '.mdx');
+  const { default: Post, frontmatter } = await import('@/content/' + slug + '.mdx');
 
-  return <PostLayout2><Post /></PostLayout2>;
+  return <PostLayout frontmatter={frontmatter}><Post /></PostLayout>;
 }

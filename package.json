@@ -20,7 +20,9 @@
     "mui-markdown": "^1.2.5",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^5.1.0"
   },
   "devDependencies": {
     "@types/node": "latest",
