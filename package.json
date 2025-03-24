@@ -4,18 +4,23 @@
   "description": "A simple blog built with Next.js that reads markdown files.",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/cache": "^11.14.0",
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@mui/material-nextjs": "^6.4.3",
+    "@next/mdx": "^15.2.3",
+    "@types/mdx": "^2.0.13",
     "gray-matter": "^4.0.3",
     "marked": "^15.0.7",
+    "mui-markdown": "^1.2.5",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",

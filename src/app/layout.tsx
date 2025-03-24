@@ -1,7 +1,6 @@
 import {firaCode, firaSans, merriweather} from '@/components/fonts/fonts';import { ThemeProvider } from '@mui/material/styles';
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v15-appRouter"
 import theme from '@/app/theme';
-import '@/styles/globals.css';
 
 const fontClasses = [
   firaSans.variable,

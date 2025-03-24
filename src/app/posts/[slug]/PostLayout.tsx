@@ -10,4 +10,12 @@ const PostLayout = ({ frontmatter, content }: { frontmatter: any; content: strin
   );
 };
 
+export const PostLayout2 = ({children}) => {
+  return (
+    <article>
+      {children}
+    </article>
+  );
+}
+
 export default PostLayout;

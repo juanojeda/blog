@@ -1,9 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const postsDirectory = path.join(process.cwd(), 'posts');
+const postsDirectory = path.join(process.cwd(), 'src/content');
 
 
 export async function GET(_request: Request, {params}: {params: Promise<{slug: string}>}) { 

@@ -23,17 +23,18 @@
       }
     ],
     "strictNullChecks": true,
-    "baseUrl": ".",
+    "baseUrl": "src/",
     "paths": {
-      "@/components/*": ["./components/*"],
-      "@/styles/*": ["./styles/*"],
-      "@/api/*": ["./app/api/*"],
-      "@/app/*": ["./app/*"],
+      "@/content/*": ["content/*"],
+      "@/components/*": ["components/*"],
+      "@/api/*": ["app/api/*"],
+      "@/app/*": ["app/*"],
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "**/*.mdx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
