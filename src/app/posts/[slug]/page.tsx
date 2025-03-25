@@ -10,7 +10,8 @@ export async function generateStaticParams() {
 
 export default async function Post({params}) {
   const {slug} = await params;
-  const { default: Post, frontmatter } = await import('@/content/' + slug + '.mdx');
+  // @/content alias doesn't work for some reason
+  const { default: Post, frontmatter } = await import('../../../content/' + slug + '.mdx');
 
   return <PostLayout frontmatter={frontmatter}><Post /></PostLayout>;
 }
