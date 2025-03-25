@@ -6,9 +6,50 @@ const MERRIWEATHER = merriweather.style.fontFamily;
 const FIRA_SANS = firaSans.style.fontFamily;
 const FIRA_CODE = firaCode.style.fontFamily;
 
-
 const theme = createTheme({
   cssVariables: true,
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#32965d',
+      light: '#5BAB7D',
+      dark: '#236941',
+    },
+    background: {
+      default: '#E7DEDA',
+      paper: '#F7F4F3',
+    },
+    secondary: {
+      main: '#96326b',
+      light: '#AB5B88',
+      dark: '#69234A',
+    },
+    success: {
+      main: '#32965d',
+      light: '#5BAB7D',
+      dark: '#236941',
+    },
+    error: {
+      main: '#d64c54',
+      light: '#DE6F76',
+      dark: '#95353A',
+    },
+    warning: {
+      main: '#ff9147',
+      light: '#FFA76B',
+      dark: '#B26531',
+    },
+    info: {
+      main: '#326B96',
+      light: '#5B88AB',
+      dark: '#234A69',
+    },
+    text: {
+      primary: '#1B2021',
+      secondary: '#374143',
+      disabled: '#49575A',
+    },
+  },
   typography: {
     htmlFontSize: 16,
     fontFamily: MERRIWEATHER,
