@@ -24,7 +24,7 @@ export default function RootLayout({
               py: 2,
             }}>
               <Container>
-                <Typography component="h1" variant="body1" sx={{mb: 0}}>
+                <Typography component="h1" variant="body1" sx={{mb: 0, fontWeight: 'bold'}}>
                   <Link href="/" underline="none" color="inherit">
                     Juan Ojeda
                   </Link>

@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 const PostLayout = ({ frontmatter, children }: { frontmatter: any; children: React.ReactNode }) => {
   return (
     <>
-      <Link href="/"> Back home</Link>
+      <Link href="/">← Back home</Link>
       <Box component={'article'}>
         <Grid sx={{px: 0, py: 3}} container justifyContent={'space-between'} alignItems={'flex-end'}>
           <Grid>
