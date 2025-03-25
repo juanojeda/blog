@@ -34,7 +34,7 @@ export default function RootLayout({
             <Box sx={{
               my: 4,
             }}>
-              <Container>
+              <Container maxWidth="md">
                 {children}
               </Container>
             </Box>
