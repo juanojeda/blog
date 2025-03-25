@@ -57,11 +57,14 @@ const theme = createTheme({
       fontFamily: FIRA_SANS,
       fontSize: "2.986rem",
       lineHeight: 1.167,
+      marginBottom: "1rem",
     },
     h2: {
       fontFamily: FIRA_SANS,
       fontSize: "2.488rem",
       lineHeight: 1.167,
+      marginBottom: "1rem",
+      marginTop: "1rem",
     },
     h3: {
       fontFamily: FIRA_SANS,

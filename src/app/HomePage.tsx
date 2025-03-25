@@ -5,7 +5,6 @@ import Link from "@mui/material/Link";
 export default function HomePage({ posts }) {
   return (
     <div>
-      <Typography variant="h1">My Blog</Typography>
       <ul>
         {posts.map((post) => (
           <li key={post.slug}>
