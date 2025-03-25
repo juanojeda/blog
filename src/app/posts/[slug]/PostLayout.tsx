@@ -12,7 +12,7 @@ const PostLayout = ({ frontmatter, children }: { frontmatter: any; children: Rea
             <Typography sx={{mb: 0}} variant="h1">{frontmatter.title}</Typography>
           </Grid>
           <Grid>
-            <Typography variant="body1">Posted on {frontmatter.date}</Typography>
+            <Typography variant="body2">Posted on {frontmatter.date}</Typography>
           </Grid>
         </Grid>
         <Paper sx={{

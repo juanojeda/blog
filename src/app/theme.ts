@@ -11,12 +11,12 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#32965d',
+      main: '#1B8346',
       light: '#5BAB7D',
       dark: '#236941',
     },
     background: {
-      default: '#E7DEDA',
+      default: '#EFE9E6',
       paper: '#F7F4F3',
     },
     secondary: {
@@ -25,9 +25,7 @@ const theme = createTheme({
       dark: '#69234A',
     },
     success: {
-      main: '#32965d',
-      light: '#5BAB7D',
-      dark: '#236941',
+      main: '#236941',
     },
     error: {
       main: '#d64c54',
@@ -90,6 +88,7 @@ const theme = createTheme({
       fontFamily: MERRIWEATHER,
       fontSize: "1rem",
       lineHeight: 1.6,
+      marginBottom: "1.6rem",
     },
     body2: {
       fontFamily: MERRIWEATHER,
