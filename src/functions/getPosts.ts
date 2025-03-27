@@ -16,7 +16,7 @@ export const getPosts = async () => {
       title: data.title,
       date: data.date,
     };
-  });
+  }).sort(({date: aDate}, {date: bDate}) => aDate > bDate ? -1 : 1);
 
   return posts;
 };
