@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -26,5 +26,5 @@ export async function GET() {
     };
   });
 
-  return Response.json(posts)
+  return NextResponse.json(posts)
 }

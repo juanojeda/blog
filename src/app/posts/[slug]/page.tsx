@@ -1,7 +1,7 @@
 import PostLayout from "./PostLayout";
 
 export async function generateStaticParams() {
-  const res = await fetch('/api/posts');
+  const res = await fetch(`${process.env.URL}/api/posts`);
   const posts = await res.json();
   const paths = posts.map((post: any) => [{slug: post.slug}]);
 
