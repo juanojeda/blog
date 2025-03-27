@@ -1,18 +1,10 @@
-import { NextResponse } from 'next/server';
-import fs from 'fs';
 import path from 'path';
+import fs from 'fs';
 import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'src/content');
 
-export interface Post {
-  slug: string;
-  title: string;
-  date: string;
-}
-
-export async function GET() {
-
+export const getPosts = async () => {
   const filenames = fs.readdirSync(postsDirectory);
   const posts = filenames.map((filename) => {
     const filePath = path.join(postsDirectory, filename);
@@ -26,5 +18,5 @@ export async function GET() {
     };
   });
 
-  return NextResponse.json(posts)
-}
+  return posts;
+};
