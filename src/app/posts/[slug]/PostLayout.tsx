@@ -2,6 +2,8 @@
 import theme from "@/app/theme";
 import { alpha, Box, Grid2 as Grid, Link, List, ListItem, Paper, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 type PostLayoutProps = {
   frontmatter: {
@@ -20,6 +22,20 @@ type PostLayoutProps = {
 
 const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) => {
   const hasRelatedPosts = relatedPosts && relatedPosts.length > 0;
+  const routerPath = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      window.location.hash = '';
+      setTimeout(() => {
+        window.location.hash = hash;
+      }, 0);
+    }
+  }, [router, routerPath, searchParams]);
+
   return (
     <>
       <Link href="/">← Back home</Link>
@@ -39,7 +55,7 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
               px:4,
             }} elevation={0} >
               <Box sx={{
-                '& li:target': {
+                '& [id^=user-content-fn-]:target': {
                   background: alpha(theme.palette.secondary.light, .25),
                   borderCollapse: 'collapse',
                   '& p': {
