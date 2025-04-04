@@ -6,7 +6,7 @@ const MERRIWEATHER = merriweather.style.fontFamily;
 const FIRA_SANS = firaSans.style.fontFamily;
 const FIRA_CODE = firaCode.style.fontFamily;
 
-const theme = createTheme({
+const baseTheme = createTheme({
   cssVariables: true,
   palette: {
     mode: 'light',
@@ -47,7 +47,10 @@ const theme = createTheme({
       secondary: '#69777A',
       disabled: '#A7B2B4',
     },
-  },
+  }
+});
+
+const theme = createTheme( baseTheme, {
   typography: {
     htmlFontSize: 16,
     fontFamily: MERRIWEATHER,
@@ -77,6 +80,8 @@ const theme = createTheme({
       lineHeight: 1.167,
       marginBottom: "1rem",
       marginTop: "1rem",
+      fontWeight: 400,
+      color: baseTheme.palette.text.secondary,
     },
     h5: {
       fontFamily: FIRA_SANS,
@@ -84,6 +89,8 @@ const theme = createTheme({
       lineHeight: 1.167,
       marginBottom: "1rem",
       marginTop: "1rem",
+      fontWeight: 400,
+      color: baseTheme.palette.text.secondary,
     },
     h6: {
       fontFamily: FIRA_SANS,
@@ -91,6 +98,8 @@ const theme = createTheme({
       lineHeight: 1.167,
       marginBottom: "1rem",
       marginTop: "1rem",
+      fontWeight: 400,
+      color: baseTheme.palette.text.secondary,
     },
     body1: {
       fontFamily: MERRIWEATHER,
