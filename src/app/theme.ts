@@ -44,8 +44,8 @@ const theme = createTheme({
     },
     text: {
       primary: '#1B2021',
-      secondary: '#374143',
-      disabled: '#49575A',
+      secondary: '#69777A',
+      disabled: '#A7B2B4',
     },
   },
   typography: {
@@ -68,21 +68,29 @@ const theme = createTheme({
       fontFamily: FIRA_SANS,
       fontSize: "2.074rem",
       lineHeight: 1.167,
+      marginBottom: "1rem",
+      marginTop: "1rem",
     },
     h4: {
       fontFamily: FIRA_SANS,
       fontSize: "1.728rem",
       lineHeight: 1.167,
+      marginBottom: "1rem",
+      marginTop: "1rem",
     },
     h5: {
       fontFamily: FIRA_SANS,
       fontSize: "1.44rem",
       lineHeight: 1.167,
+      marginBottom: "1rem",
+      marginTop: "1rem",
     },
     h6: {
       fontFamily: FIRA_SANS,
       fontSize: "1.2rem",
       lineHeight: 1.167,
+      marginBottom: "1rem",
+      marginTop: "1rem",
     },
     body1: {
       fontFamily: MERRIWEATHER,

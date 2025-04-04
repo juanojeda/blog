@@ -1,5 +1,6 @@
 import { getPosts } from "functions/getPosts";
 import PostLayout from "./PostLayout";
+import { getRelatedPosts } from "functions/getRelatedPosts";
 
 export async function generateStaticParams() {
   const posts = await getPosts();
@@ -13,5 +14,7 @@ export default async function Post({params}) {
   // @/content alias doesn't work for some reason
   const { default: Post, frontmatter } = await import('../../../content/' + slug + '.mdx');
 
-  return <PostLayout frontmatter={frontmatter}><Post /></PostLayout>;
+  const relatedPosts = await getRelatedPosts(slug)
+
+  return <PostLayout frontmatter={frontmatter} relatedPosts={relatedPosts}><Post /></PostLayout>;
 }

@@ -1,8 +1,24 @@
 "use client";
-import { Box, Grid2 as Grid, Link, Paper } from "@mui/material";
+import { Box, Grid2 as Grid, Link, List, ListItem, Paper, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-const PostLayout = ({ frontmatter, children }: { frontmatter: any; children: React.ReactNode }) => {
+type PostLayoutProps = {
+  frontmatter: {
+    title: string;
+    date: string;
+    tags: string[];
+  };
+  children: React.ReactNode;
+  relatedPosts?: {
+    slug: string;
+    title: string;
+    date: string;
+    tags: string[];
+  }[];
+};
+
+const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) => {
+  const hasRelatedPosts = relatedPosts && relatedPosts.length > 0;
   return (
     <>
       <Link href="/">← Back home</Link>
@@ -15,12 +31,34 @@ const PostLayout = ({ frontmatter, children }: { frontmatter: any; children: Rea
             <Typography variant="body2">Posted on {frontmatter.date}</Typography>
           </Grid>
         </Grid>
-        <Paper sx={{
-          py:4,
-          px:4,
-        }} elevation={0} >
-          {children}
-        </Paper>
+        <Grid container>
+          <Grid size={{xs: 12, md: 8, lg: 9}}>
+            <Paper sx={{
+              py:4,
+              px:4,
+            }} elevation={0} >
+              {children}
+            </Paper>
+          </Grid>
+          <Grid size={{xs: 12, md: 4, lg: 3}} sx={{
+            px: 4}}>
+            <Typography variant="h5" color="text.secondary">Related Posts</Typography>
+            {hasRelatedPosts ? <List sx={{py: 0}}>
+              {relatedPosts?.map((post) => (
+              <ListItem key={post.slug} sx={{px: 0}}>
+                  <Stack>
+                    <Box>
+                      <Link href={`/posts/${post.slug}`}>
+                        <Typography variant="body2">{post.title}</Typography>
+                      </Link>
+                    </Box>
+                      <Typography variant="caption" color="text.secondary">{post.date}</Typography>
+                  </Stack>
+              </ListItem>
+              ))}
+            </List> : <Typography variant="body2" color="text.secondary">No related posts</Typography>}
+          </Grid>
+        </Grid>
       </Box>
     
     </>
