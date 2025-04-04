@@ -7,6 +7,18 @@ const withMDX = createMDX({
       ["remark-mdx-frontmatter"],
       ["remark-gfm"],
     ],
+    rehypePlugins: [
+      ["rehype-slug"],
+      [
+        "rehype-autolink-headings",
+        {
+          properties: {
+            className: ["anchor"],
+          },
+        },
+      ],
+      ["rehype-prism-plus", { ignoreMissing: true }],
+    ],
   },
 });
 

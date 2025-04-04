@@ -132,7 +132,7 @@ const theme = createTheme( baseTheme, {
     MuiLink: {
       defaultProps: {
         component: NextLink,
-      }
+      },
     },
     MuiButtonBase: {
       defaultProps: {

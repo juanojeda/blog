@@ -1,5 +1,6 @@
 "use client";
-import { Box, Grid2 as Grid, Link, List, ListItem, Paper, Stack } from "@mui/material";
+import theme from "@/app/theme";
+import { alpha, Box, Grid2 as Grid, Link, List, ListItem, Paper, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 type PostLayoutProps = {
@@ -37,7 +38,24 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
               py:4,
               px:4,
             }} elevation={0} >
-              {children}
+              <Box sx={{
+                '& li:target': {
+                  background: alpha(theme.palette.secondary.light, .25),
+                  borderCollapse: 'collapse',
+                  '& p': {
+                    mb: 0
+                  },
+                  '&::after': {
+                    content: "''",
+                    display: "block",
+                    height: theme.spacing(.25),
+                    background: theme.palette.secondary.main,
+                    mb: 2
+                  }
+                },
+              }}>
+                {children}
+              </Box>
             </Paper>
           </Grid>
           <Grid size={{xs: 12, md: 4, lg: 3}} sx={{
