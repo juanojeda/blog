@@ -133,6 +133,7 @@ const theme = createTheme( baseTheme, {
       },
       styleOverrides: {
         root: {
+          transition: 'color 0.2s ease-in-out, background-color 0.2s ease-in-out',
           '&:hover': {
             backgroundColor: alpha(baseTheme.palette.primary.main, 0.1),
           },
@@ -145,7 +146,6 @@ const theme = createTheme( baseTheme, {
                 textDecoration: 'none',
                 paddingBottom: baseTheme.spacing(0.5),
                 position: 'relative',
-                transition: 'color 0.2s ease-in-out, background-color 0.2s ease-in-out',
                 margin: 0,
                 '&:hover': {
                   color: lighten(baseTheme.palette.primary.main, 0.2),
