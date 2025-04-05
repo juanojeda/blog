@@ -26,15 +26,15 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      window.location.hash = '';
-      setTimeout(() => {
-        window.location.hash = hash;
-      }, 0);
-    }
-  }, [router, routerPath, searchParams]);
+  // useEffect(() => {
+  //   const hash = window.location.hash;
+  //   if (hash) {
+  //     window.location.hash = '';
+  //     setTimeout(() => {
+  //       window.location.hash = hash;
+  //     }, 0);
+  //   }
+  // }, [router, routerPath, searchParams]);
 
   return (
     <>
