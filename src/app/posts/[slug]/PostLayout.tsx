@@ -4,6 +4,8 @@ import { alpha, Box, Grid2 as Grid, Link, List, ListItem, Paper, Stack } from "@
 import Typography from "@mui/material/Typography";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
+import { formatRelative } from "date-fns";
+import {enAU} from 'date-fns/locale';
 
 type PostLayoutProps = {
   frontmatter: {
@@ -58,6 +60,26 @@ const FootnoteHighlight = ({ children }: { children: React.ReactNode }) => {
   );
 }
 
+const formatDate = (date: string) => {
+  const dateObj = new Date(date);
+
+  const formatter = {
+    lastWeek: "'last' eeee 'at' p",
+    yesterday: "'yesterday 'at' p",
+    today: "'today 'at' p",
+    tomorrow: "'tomorrow 'at' p",
+    nextWeek: "'next' eeee 'at' p",
+    other: 'dd MMM yyyy',
+  };
+
+  return formatRelative(dateObj, new Date(), {
+    locale: {
+      ...enAU,
+      formatRelative: (token) => formatter[token]
+    }
+  })
+}
+
 const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) => {
   const hasRelatedPosts = relatedPosts && relatedPosts.length > 0;
 
@@ -66,11 +88,11 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
       <Link href="/">← Back home</Link>
       <Box component={'article'}>
         <Grid sx={{px: 0, py: 3}} container justifyContent={'space-between'} alignItems={'flex-end'}>
-          <Grid>
+          <Grid size={12}>
             <Typography sx={{mb: 0}} variant="h1">{frontmatter.title}</Typography>
           </Grid>
-          <Grid>
-            <Typography variant="body2">Posted on {frontmatter.date}</Typography>
+          <Grid size={12}>
+            <Typography variant="body2">Posted {formatDate(frontmatter.date)}</Typography>
           </Grid>
         </Grid>
         <Grid container>
@@ -98,7 +120,7 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
                         <Typography variant="body2" component="span">{post.title}</Typography>
                       </Link>
                     </Box>
-                      <Typography variant="caption" color="text.secondary">{post.date}</Typography>
+                      <Typography variant="caption" color="text.secondary">posted {formatDate(post.date)}</Typography>
                   </Stack>
               </ListItem>
               ))}
