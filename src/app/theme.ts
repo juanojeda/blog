@@ -1,6 +1,6 @@
 'use client';
 import { firaCode, firaSans, merriweather } from '@/components/fonts/fonts';
-import { createTheme, lighten } from '@mui/material/styles';
+import { alpha, createTheme, lighten } from '@mui/material/styles';
 import {NextLink} from "@/components/NextLink";
 const MERRIWEATHER = merriweather.style.fontFamily;
 const FIRA_SANS = firaSans.style.fontFamily;
@@ -134,7 +134,7 @@ const theme = createTheme( baseTheme, {
       styleOverrides: {
         root: {
           '&:hover': {
-            backgroundColor: lighten(baseTheme.palette.primary.main, 0.9),
+            backgroundColor: alpha(baseTheme.palette.primary.main, 0.1),
           },
           variants: [
             {

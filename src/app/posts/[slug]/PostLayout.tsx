@@ -95,7 +95,7 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
                   <Stack>
                     <Box>
                       <Link href={`/posts/${post.slug}`}>
-                        <Typography variant="body2">{post.title}</Typography>
+                        <Typography variant="body2" component="span">{post.title}</Typography>
                       </Link>
                     </Box>
                       <Typography variant="caption" color="text.secondary">{post.date}</Typography>
