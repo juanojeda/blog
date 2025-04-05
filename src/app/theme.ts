@@ -1,6 +1,6 @@
 'use client';
 import { firaCode, firaSans, merriweather } from '@/components/fonts/fonts';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, lighten } from '@mui/material/styles';
 import {NextLink} from "@/components/NextLink";
 const MERRIWEATHER = merriweather.style.fontFamily;
 const FIRA_SANS = firaSans.style.fontFamily;
@@ -11,13 +11,11 @@ const baseTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#1B8346',
-      light: '#5BAB7D',
-      dark: '#236941',
+      main: 'rgb(70, 90, 219)',
     },
     background: {
-      default: '#EFE9E6',
-      paper: '#F7F4F3',
+      default: 'hsl(195,34%,93%)',
+      paper: 'hsl(235,14%,97%)',
     },
     secondary: {
       main: '#96326b',
