@@ -133,14 +133,38 @@ const theme = createTheme( baseTheme, {
       },
       styleOverrides: {
         root: {
+          '&:hover': {
+            backgroundColor: lighten(baseTheme.palette.primary.main, 0.9),
+          },
           variants: [
             {
               props: { variant: 'h5' },
               style: {
                 color: baseTheme.palette.text.primary,
-                borderBottom: `${baseTheme.spacing(0.25)} solid ${baseTheme.palette.primary.main}`,
+                display: 'inline-block',
                 textDecoration: 'none',
                 paddingBottom: baseTheme.spacing(0.5),
+                position: 'relative',
+                transition: 'color 0.2s ease-in-out, background-color 0.2s ease-in-out',
+                margin: 0,
+                '&:hover': {
+                  color: lighten(baseTheme.palette.primary.main, 0.2),
+                },
+                '&:after': {
+                  content: '""',
+                  display: 'block',
+                  width: '60%',
+                  position: 'absolute',
+                  left: 0,
+                  bottom: 0,
+                  height: baseTheme.spacing(0.25),
+                  backgroundColor: baseTheme.palette.primary.main,
+                },
+                '&:hover:after': {
+                  width: '100%',
+                  transition: 'width 0.2s ease-in-out',
+                  transitionDelay: '0.3s',
+                }
               }
             }
           ]
