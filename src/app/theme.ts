@@ -131,6 +131,21 @@ const theme = createTheme( baseTheme, {
       defaultProps: {
         component: NextLink,
       },
+      styleOverrides: {
+        root: {
+          variants: [
+            {
+              props: { variant: 'h5' },
+              style: {
+                color: baseTheme.palette.text.primary,
+                borderBottom: `${baseTheme.spacing(0.25)} solid ${baseTheme.palette.primary.main}`,
+                textDecoration: 'none',
+                paddingBottom: baseTheme.spacing(0.5),
+              }
+            }
+          ]
+        }
+      }
     },
     MuiButtonBase: {
       defaultProps: {
