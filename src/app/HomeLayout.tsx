@@ -1,5 +1,5 @@
 import HalftoneImage from '@/components/HalftoneImage';
-import { Box, Grid2 as Grid, Stack, Typography } from '@mui/material';
+import { Box, Grid2 as Grid, Link, Stack, Typography } from '@mui/material';
 import profilePic from '@/public/images/profile.jpg';
 
 const HomeLayout = () => {
@@ -37,7 +37,20 @@ const HomeLayout = () => {
         xs: 12,
         sm: 12,
         md: 6,
+      }} sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
       }}>
+        <Box sx={{ px: 4 }}>
+          <Typography variant="h1">I'm a software engineer in Melbourne, Australia.</Typography>
+          <Typography variant="h5" component="p">
+            You can find me on <Link variant="h5" href="https://www.linkedin.com/in/juan-ojeda">LinkedIn.</Link>
+          </Typography>
+          <Typography variant="h5" component="p">
+            This is where I share <Link variant="h5" href="/notes">my notes.</Link>
+          </Typography>
+        </Box>
       </Grid>
     </Grid >
   );

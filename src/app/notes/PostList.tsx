@@ -12,7 +12,7 @@ export default function HomePage({ posts }) {
       <Paper elevation={0} sx={{ px: 4, py: 4, mb: 2 }}>
         {posts.map((post) => (
           <Box key={post.slug} sx={{ mb: 4 }}>
-            <Typography variant="h6" sx={{ mt: 0, mb: 1 }}>
+            <Typography variant="h5" sx={{ mt: 0, mb: 1 }}>
               <Link variant="h5" href={`/posts/${post.slug}`}>
                 {post.title}
               </Link>
