@@ -2,10 +2,9 @@
 import theme from "@/app/theme";
 import { alpha, Box, Grid2 as Grid, Link, List, ListItem, Paper, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import FormattedDate from "@/components/FormattedDate";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
-import { formatRelative } from "date-fns";
-import {enAU} from 'date-fns/locale';
 
 type PostLayoutProps = {
   frontmatter: {
@@ -60,26 +59,6 @@ const FootnoteHighlight = ({ children }: { children: React.ReactNode }) => {
   );
 }
 
-const formatDate = (date: string) => {
-  const dateObj = new Date(date);
-
-  const formatter = {
-    lastWeek: "'last' eeee 'at' p",
-    yesterday: "'yesterday 'at' p",
-    today: "'today 'at' p",
-    tomorrow: "'tomorrow 'at' p",
-    nextWeek: "'next' eeee 'at' p",
-    other: 'dd MMM yyyy',
-  };
-
-  return formatRelative(dateObj, new Date(), {
-    locale: {
-      ...enAU,
-      formatRelative: (token) => formatter[token]
-    }
-  })
-}
-
 const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) => {
   const hasRelatedPosts = relatedPosts && relatedPosts.length > 0;
 
@@ -87,19 +66,19 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
     <>
       <Link href="/">← Back home</Link>
       <Box component={'article'}>
-        <Grid sx={{px: 0, py: 3}} container justifyContent={'space-between'} alignItems={'flex-end'}>
+        <Grid sx={{ px: 0, py: 3 }} container justifyContent={'space-between'} alignItems={'flex-end'}>
           <Grid size={12}>
-            <Typography sx={{mb: 0}} variant="h1">{frontmatter.title}</Typography>
+            <Typography sx={{ mb: 0 }} variant="h1">{frontmatter.title}</Typography>
           </Grid>
           <Grid size={12}>
-            <Typography variant="body2">Posted {formatDate(frontmatter.date)}</Typography>
+            <FormattedDate date={frontmatter.date} />
           </Grid>
         </Grid>
         <Grid container>
-          <Grid size={{xs: 12, md: 8, lg: 9}}>
+          <Grid size={{ xs: 12, md: 8, lg: 9 }}>
             <Paper sx={{
-              py:4,
-              px:4,
+              py: 4,
+              px: 4,
             }} elevation={0} >
               <Suspense>
                 <FootnoteHighlight>
@@ -108,27 +87,28 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
               </Suspense>
             </Paper>
           </Grid>
-          <Grid size={{xs: 12, md: 4, lg: 3}} sx={{
-            px: 4}}>
+          <Grid size={{ xs: 12, md: 4, lg: 3 }} sx={{
+            px: 4
+          }}>
             <Typography variant="h5" color="text.secondary">Related Posts</Typography>
-            {hasRelatedPosts ? <List sx={{py: 0}}>
+            {hasRelatedPosts ? <List sx={{ py: 0 }}>
               {relatedPosts?.map((post) => (
-              <ListItem key={post.slug} sx={{px: 0}}>
+                <ListItem key={post.slug} sx={{ px: 0 }}>
                   <Stack>
                     <Box>
                       <Link href={`/posts/${post.slug}`}>
                         <Typography variant="body2" component="span">{post.title}</Typography>
                       </Link>
                     </Box>
-                      <Typography variant="caption" color="text.secondary">posted {formatDate(post.date)}</Typography>
+                    <FormattedDate date={post.date} />
                   </Stack>
-              </ListItem>
+                </ListItem>
               ))}
             </List> : <Typography variant="body2" color="text.secondary">No related posts</Typography>}
           </Grid>
         </Grid>
       </Box>
-    
+
     </>
   );
 };
