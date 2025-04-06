@@ -6,7 +6,7 @@ import FormattedDate from "@/components/FormattedDate";
 
 export default function HomePage({ posts }) {
   return (
-    <Box sx={{ p: 2 }}>
+    <Box>
       <Typography variant="h2">Recent posts</Typography>
 
       <Paper elevation={0} sx={{ px: 4, py: 4, mb: 2 }}>
@@ -17,7 +17,7 @@ export default function HomePage({ posts }) {
                 {post.title}
               </Link>
             </Typography>
-            <FormattedDate date={post.date} component="p" />
+            <FormattedDate date={post.date} />
             <Typography variant="body1" component="p">
               {post.summary}
             </Typography>

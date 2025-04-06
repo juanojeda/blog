@@ -24,12 +24,12 @@ const formatDate = (date: string) => {
   })
 }
 
-type FormattedDateProps = typeof Typography & {
+type FormattedDateProps = {
   date: string;
 }
 
-const FormattedDate = ({ date, ...props }: FormattedDateProps) => {
-  return <Typography variant="caption" color="text.secondary" marginBottom={1} {...props}>posted {formatDate(date)}</Typography>
+const FormattedDate: React.FunctionComponent<FormattedDateProps> = ({ date }) => {
+  return <Typography variant="body2" color="text.secondary" component={"p"} marginBottom={1}>posted {formatDate(date)}</Typography>
 }
 
 export default FormattedDate;
