@@ -64,7 +64,7 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
 
   return (
     <>
-      <Link href="/">← Back home</Link>
+      <Link href="/notes">← Back to notes</Link>
       <Box component={'article'}>
         <Grid sx={{ px: 0, py: 3 }} container justifyContent={'space-between'} alignItems={'flex-end'}>
           <Grid size={12}>

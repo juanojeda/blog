@@ -1,9 +1,6 @@
-import { getPosts } from 'functions/getPosts';
-import HomePage from './HomePage';
+import HomeLayout from "./HomeLayout";
 
 export default async function () {
-  
-  const posts = await getPosts();
-
-  return <HomePage posts={posts} />;
+  return (
+    <HomeLayout />)
 }

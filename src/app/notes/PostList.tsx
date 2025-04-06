@@ -6,8 +6,8 @@ import FormattedDate from "@/components/FormattedDate";
 
 export default function HomePage({ posts }) {
   return (
-    <Box>
-      <Typography variant="h2">Recent posts</Typography>
+    <Box sx={{ py: 4 }}>
+      <Typography variant="h2">Recent notes</Typography>
 
       <Paper elevation={0} sx={{ px: 4, py: 4, mb: 2 }}>
         {posts.map((post) => (

@@ -1,0 +1,48 @@
+"use client";
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import Image, { StaticImageData } from 'next/image';
+import { useTheme } from '@mui/material/styles';
+import { Box } from '@mui/material';
+import theme from '@/app/theme';
+
+interface HalftoneImageProps {
+  src: StaticImageData | string;
+  alt: string;
+  width?: string | number;
+  height?: string | number;
+  color?: keyof typeof theme.palette;
+}
+
+const ImageWrapper = styled(Box) <{ color?: keyof typeof theme.palette; imgWidth?: string | number; imgHeight?: string | number }>`
+  background-color: ${props => props.color ? theme.palette[props.color].main : theme.palette.primary.main};
+  width: ${props => props.imgWidth};
+  height: ${props => props.imgHeight};
+`;
+
+const ImageBg = styled(Image)`
+  filter: grayscale(100%);
+  mix-blend-mode: screen;
+  opacity: 0.8;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  object-fit: cover;
+  }
+`;
+
+const HalftoneImage: React.FC<HalftoneImageProps> = ({ src, width = 100, height = 100, color }) => {
+
+  const theme = useTheme()
+
+  return (
+    <ImageWrapper color={color} imgWidth={width} imgHeight={height}>
+      <ImageBg
+        src={src}
+        alt="Halftone" />
+    </ImageWrapper>
+  );
+};
+
+export default HalftoneImage;

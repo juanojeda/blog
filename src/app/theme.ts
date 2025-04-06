@@ -1,7 +1,7 @@
-'use client';
-import { firaCode, firaSans, merriweather } from '@/components/fonts/fonts';
-import { alpha, createTheme, lighten } from '@mui/material/styles';
-import {NextLink} from "@/components/NextLink";
+"use client";
+import { firaCode, firaSans, merriweather } from "@/components/fonts/fonts";
+import { alpha, createTheme, lighten } from "@mui/material/styles";
+import { NextLink } from "@/components/NextLink";
 const MERRIWEATHER = merriweather.style.fontFamily;
 const FIRA_SANS = firaSans.style.fontFamily;
 const FIRA_CODE = firaCode.style.fontFamily;
@@ -9,46 +9,46 @@ const FIRA_CODE = firaCode.style.fontFamily;
 const baseTheme = createTheme({
   cssVariables: true,
   palette: {
-    mode: 'light',
+    mode: "light",
     primary: {
-      main: 'rgb(70, 90, 219)',
+      main: "rgb(70, 90, 219)",
     },
     background: {
-      default: 'hsl(195,34%,93%)',
-      paper: 'hsl(235,14%,97%)',
+      default: "hsl(195,34%,93%)",
+      paper: "hsl(235,14%,97%)",
     },
     secondary: {
-      main: '#96326b',
-      light: '#AB5B88',
-      dark: '#69234A',
+      main: "#96326b",
+      light: "#AB5B88",
+      dark: "#69234A",
     },
     success: {
-      main: '#236941',
+      main: "#236941",
     },
     error: {
-      main: '#d64c54',
-      light: '#DE6F76',
-      dark: '#95353A',
+      main: "#d64c54",
+      light: "#DE6F76",
+      dark: "#95353A",
     },
     warning: {
-      main: '#ff9147',
-      light: '#FFA76B',
-      dark: '#B26531',
+      main: "#ff9147",
+      light: "#FFA76B",
+      dark: "#B26531",
     },
     info: {
-      main: '#326B96',
-      light: '#5B88AB',
-      dark: '#234A69',
+      main: "#326B96",
+      light: "#5B88AB",
+      dark: "#234A69",
     },
     text: {
-      primary: '#1B2021',
-      secondary: '#69777A',
-      disabled: '#A7B2B4',
+      primary: "#1B2021",
+      secondary: "#69777A",
+      disabled: "#A7B2B4",
     },
-  }
+  },
 });
 
-const theme = createTheme( baseTheme, {
+const theme = createTheme(baseTheme, {
   typography: {
     htmlFontSize: 16,
     fontFamily: MERRIWEATHER,
@@ -124,7 +124,7 @@ const theme = createTheme( baseTheme, {
       fontFamily: FIRA_SANS,
       fontSize: "0.694rem",
       lineHeight: 1.6,
-    }
+    },
   },
   components: {
     MuiLink: {
@@ -133,50 +133,58 @@ const theme = createTheme( baseTheme, {
       },
       styleOverrides: {
         root: {
-          transition: 'color 0.2s ease-in-out, background-color 0.2s ease-in-out',
-          '&:hover': {
+          transition:
+            "color 0.2s ease-in-out, background-color 0.2s ease-in-out",
+          "&:hover": {
             backgroundColor: alpha(baseTheme.palette.primary.main, 0.1),
           },
           variants: [
             {
-              props: { variant: 'h5' },
+              props: { variant: "h5" },
               style: {
                 color: baseTheme.palette.text.primary,
-                display: 'inline-block',
-                textDecoration: 'none',
+                display: "inline-block",
+                textDecoration: "none",
                 paddingBottom: baseTheme.spacing(0.5),
-                position: 'relative',
+                position: "relative",
                 margin: 0,
-                '&:hover': {
+                "&:hover": {
                   color: lighten(baseTheme.palette.primary.main, 0.2),
                 },
-                '&:after': {
+                "&:after": {
                   content: '""',
-                  display: 'block',
-                  width: '60%',
-                  position: 'absolute',
+                  display: "block",
+                  width: "60%",
+                  position: "absolute",
                   left: 0,
                   bottom: 0,
                   height: baseTheme.spacing(0.25),
                   backgroundColor: baseTheme.palette.primary.main,
                 },
-                '&:hover:after': {
-                  width: '100%',
-                  transition: 'width 0.2s ease-in-out',
-                  transitionDelay: '0.3s',
-                }
-              }
-            }
-          ]
-        }
-      }
+                "&:hover:after": {
+                  width: "100%",
+                  transition: "width 0.2s ease-in-out",
+                  transitionDelay: "0.3s",
+                },
+              },
+            },
+          ],
+        },
+      },
     },
     MuiButtonBase: {
       defaultProps: {
-        LinkComponent: NextLink
-      }
-    }
-  }
+        LinkComponent: NextLink,
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          marginBottom: 0,
+        },
+      },
+    },
+  },
 });
 
 export default theme;
