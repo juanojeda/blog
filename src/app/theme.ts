@@ -52,6 +52,12 @@ const theme = createTheme(baseTheme, {
   typography: {
     htmlFontSize: 16,
     fontFamily: MERRIWEATHER,
+    poster: {
+      fontFamily: FIRA_SANS,
+      fontSize: "5.16rem",
+      lineHeight: 1.167,
+      fontWeight: 100,
+    },
     h1: {
       fontFamily: FIRA_SANS,
       fontSize: "2.986rem",
@@ -127,6 +133,13 @@ const theme = createTheme(baseTheme, {
     },
   },
   components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          poster: "h1",
+        },
+      },
+    },
     MuiLink: {
       defaultProps: {
         component: NextLink,
@@ -186,5 +199,23 @@ const theme = createTheme(baseTheme, {
     },
   },
 });
+
+declare module "@mui/material/styles" {
+  interface TypographyVariants {
+    poster: React.CSSProperties;
+  }
+
+  // allow configuration using `createTheme()`
+  interface TypographyVariantsOptions {
+    poster?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module "@mui/material/Typography" {
+  interface TypographyPropsVariantOverrides {
+    poster: true;
+  }
+}
 
 export default theme;

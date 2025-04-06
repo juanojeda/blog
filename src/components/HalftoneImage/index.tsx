@@ -15,16 +15,16 @@ interface HalftoneImageProps {
   color?: keyof typeof theme.palette;
 }
 
-const ImageWrapper = styled(Box) <{ color?: keyof typeof theme.palette; imgWidth?: string | number; imgHeight?: string | number }>`
+const ImageWrapper = styled(Box) <{ color?: keyof typeof theme.palette; width: string | number; height: string | number; }>`
   background-color: ${props => props.color ? theme.palette[props.color].main : theme.palette.primary.main};
-  width: ${props => props.imgWidth};
-  height: ${props => props.imgHeight};
+  width: ${props => props.width};
+  height: ${props => props.height};
 `;
 
 const ImageBg = styled(Image)`
   filter: grayscale(100%);
   mix-blend-mode: screen;
-  opacity: 0.8;
+  opacity: 0.6;
   width: 100%;
   height: 100%;
   position: relative;
@@ -37,7 +37,7 @@ const HalftoneImage: React.FC<HalftoneImageProps> = ({ src, width = 100, height 
   const theme = useTheme()
 
   return (
-    <ImageWrapper color={color} imgWidth={width} imgHeight={height}>
+    <ImageWrapper color={color} width={width} height={height}>
       <ImageBg
         src={src}
         alt="Halftone" />
