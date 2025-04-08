@@ -1,0 +1,212 @@
+---
+title: Can ChatGPT be my dev team?
+date: 2023-03-27
+summary: "I tried to build a simple app with ChatGPT as my dev team. It didn't go well."
+tags:
+  - chatgpt
+  - ai
+  - product
+  - software-development
+  - web-development
+  - javascript
+---
+
+*Note: This post was originally posted [on Medium](https://medium.com/everestengineering/can-chatgpt-be-my-dev-team-6a17c918154).*
+
+Over the weekend, I experimented to see if ChatGPT could be my dev team for a small project. For this experiment, I acted as a product owner, with a simple idea that I want to turn into code.
+
+The app is a simple one, based on a manual process that I’m already using in a Google spreadsheet, so the requirements are pretty clear in my mind, and pretty simple too (at least, I thought they were!).
+
+**TL;DR:** I tried, and have currently failed, to build a viable prototype with ChatGPT as my dev team. I think the issue is in how I’m attempting to get the job done, but I haven’t quite figured out what I need to tweak yet. I went through an amusing (or frustrating, depending on your mindset?) number of iterations, each introducing a new confusion or complication, before I decided to hang my hat. I can’t help but feel like this is a new, more torturous, version of “[who’s on first](https://www.youtube.com/watch?v=kTcRRaXV-fg)”.
+
+## The Product Brief
+
+This is the product criteria I started with:
+
+I want to create a week-by-week calendar that rates my running training week based on some criteria:  
+A: 5+ days with a run, including a “long run”, and a performance run (which is a “workout” type run OR a race)  
+A+: A rating, plus both a race AND workout  
+B: 4 days with a run, including a long run and a performance run  
+C: 3 days with a run including a long run and a performance run, OR 4 days a week including a long run but no performance run
+
+After we nail down the rating logic, I can then extend this to fetching my running data from Strava, and building a web app.
+
+## The Requirements
+
+I told GPT what I wanted to build, and then asked it for some feedback on my criteria, to see if there were any edge cased I’d missed. It gave me some general training advice (eg. don’t be too strict with ratings, what about injury prevention? etc.)
+
+![](https://miro.medium.com/v2/resize:fit:700/1*GyHMa2s7yzITlDaLu097HQ.png)
+
+but it also spotted an omission in my initial criteria:
+
+> **GPT:** What if you miss your long run? If you miss your long run but still meet the other criteria, it’s not clear what rating you would give yourself. You may want to decide on a separate rating for this scenario.
+
+Good thinking, GPT! I asked it to adjust the criteria, and then it seemed like my rating logic covered all the edge cases. Time to get coding!
+
+## The first bit of code
+
+I asked it to represent the logic in Javascript. This is my native language, so I should be able to understand what it gives me, and make sure there aren’t any logic bugs.
+
+It came up with this, which interestingly showed that there were some gaps in translating from requirements to code (comments added, to reflect my thinking as I’m reading it):
+
+```
+function getWeeklyRating(runsPerWeek, longRun, performanceRun) {  
+  if (runsPerWeek === 5 && longRun && performanceRun) { // <-- awesome, nailed it!  
+    if (performanceRun === "workout" && longRun === "race") { // <-- what the?  
+      return "A+";  
+    } else if (performanceRun === "race" && longRun === "workout") { // <-- uh oh, somethings' weird here  
+      return "A+";  
+    } else {  
+      return "A";  
+    }  
+// the rest seems like it's ok. Should be easy to tweak this!  
+  } else if (runsPerWeek === 4 && longRun && performanceRun) {  
+    return "B";  
+  } else if (runsPerWeek === 4 && !longRun && performanceRun) {  
+    return "C";  
+  } else if (runsPerWeek === 3 && longRun && performanceRun) {  
+    return "C";  
+  } else if (runsPerWeek === 3 && !longRun && performanceRun) {  
+    return "D";  
+  } else {  
+    return "N/A";  
+  }  
+}
+```
+
+
+In this code, it seems like a “long run” can be a workout a race. This seems off, but it seemed like a good first pass, with a small misunderstanding, so I tried to clarify what the criteria should be:
+
+![](https://miro.medium.com/v2/resize:fit:700/1*rBTiKZsIS_BSkFmAPhQx6Q.png)
+
+```
+function getWeeklyRating(runsPerWeek, longRun, performanceRun) {  
+  if (runsPerWeek === 5 && longRun && performanceRun) {  
+    if (performanceRun === "race" && !longRun.includes("workout")) { // <-- oh dear...   
+      return "A";  
+    } else if (performanceRun === "workout" && longRun === "workout") {  
+      return "A";  
+    } else if (performanceRun === "workout" && longRun === "race") {  
+      return "A";  
+    } else if (performanceRun === "race" && longRun === "race") {  
+      return "A+";  
+    }  
+  } else if (runsPerWeek === 4 && longRun && performanceRun) {  
+    if (!longRun.includes("workout")) {  
+      return "B";  
+    } else {  
+      return "C";  
+    }  
+  } else if (runsPerWeek === 3 && longRun && performanceRun) {  
+    if (!longRun.includes("workout")) {  
+      return "C";  
+    } else {  
+      return "D";  
+    }  
+  }  
+  return "F";  
+}
+```
+
+At this point, it became pretty clear that GPT was a bit confused — or maybe I am confused about how the code is supposed to be used? Either way, there’s some confusion. It still thinks a long run can be a race or include a workout, but it’s now explicitly saying that this condition will penalise the rating. Not quite what I meant!
+
+## In which I try to steer the code
+
+I thought maybe giving it a helping hand by defining the function input would be helpful.
+
+![](https://miro.medium.com/v2/resize:fit:700/1*RG0N0R5eR6RdRxHtjxSDOw.png)
+
+```
+function getWeeklyRating(runs) {  
+  const numRuns = runs.length;  
+  const hasLongRun = runs.includes("long run");  
+  const hasPerformanceRun = runs.includes("race") || runs.includes("workout"); // <-- ok, looks like we've cleared up that confusion  
+  
+  if (numRuns === 5 && hasLongRun && hasPerformanceRun) {  
+    if (runs.includes("race") && !hasWorkout(runs, "long run")) { // <-- err... Not sure what's going on here  
+      return "A";  
+    } else if (runs.includes("workout") && runs.includes("long run") && !hasRace(runs, "long run")) { // ok, I clearly don't know what's happening. let's check the function definition ...  
+      return "A";  
+    } else if (runs.includes("workout") && hasRace(runs, "long run")) {  
+      return "A";  
+    } else if (runs.includes("race") && hasRace(runs, "long run")) {  
+      return "A+";  
+    }  
+  } else if (numRuns === 4 && hasLongRun && hasPerformanceRun) {  
+    if (!hasWorkout(runs, "long run")) {  
+      return "B";  
+    } else {  
+      return "C";  
+    }  
+  } else if (numRuns === 3 && hasLongRun && hasPerformanceRun) {  
+    if (!hasWorkout(runs, "long run")) {  
+      return "C";  
+    } else {  
+      return "D";  
+    }  
+  }  
+  return "F";  
+}  
+  
+// I don't quite get why we pass a second type to either of these functions...  
+function hasRace(runs, type) {  
+  return runs.includes("race") && runs.includes(type);  
+}  
+  
+function hasWorkout(runs, type) {  
+  return runs.includes("workout") && runs.includes(type);  
+}
+```
+
+This attempt felt like a bit of a course correction, but I was a bit confused about the helper functions introduced here.
+
+Interestingly, the summary that GPT gave for these helper functions seemed to show some more confusion:
+
+![](https://miro.medium.com/v2/resize:fit:700/1*Kra95plbNPVla9tQq38fGQ.png)
+
+> **GPT**: The `**hasRace**` and `**hasWorkout**` helper functions check if the array includes a run of a given type (e.g. “race” or “workout”) and also includes a “long run”. This is used to check if the long run includes a race or workout component when determining the rating.
+
+## A test driven approach
+
+I tried to go through a few more iterations, before I tried another approach. Let’s give it some test data with expected ratings, and ask it to write the code that will make it pass. TDD, right?
+
+![](https://miro.medium.com/v2/resize:fit:700/1*GVrEFJfxsojkOFJmIVMfcA.png)
+
+The code that ChatGPT created isn’t what I wanted. I’ll let ChatGPT summarise for you:
+
+![](https://miro.medium.com/v2/resize:fit:700/1*FrBvQtFQepLFSpk5tXk28w.png)
+
+> **GPT:** In this updated code, I’ve adjusted the logic of each rating case to match the ratings you specified:  
+>   
+> 1. For an “A+” rating, the function checks if the array has 5 runs, a long run, and a workout as the first run, and a race as the fourth run.  
+> 2. For an “A” rating, the function checks if the array has 5 runs, a long run, and no performance runs.  
+> 3. For a “B” rating, the function checks if the array has 4 runs, a long run, and no performance runs, or if the array has 4 runs, a long run, and a workout as the first run.  
+> …
+
+To summarise that summary, it seems like GPT cares about the order of the runs. This isn’t something I care about, and actually I want this to not be the case!
+
+## Back to the requirements
+
+I tried to go back and forth with my “dev team” for another 3 or 4 iterations, and each came back with a new set of confusions. After a while, I decided to ask GPT to restate what it thinks the criteria are.
+
+![](https://miro.medium.com/v2/resize:fit:700/1*swdTRAfFEUc2fKsc0jydfA.png)
+
+Ok, that looks pretty goo- … wait a minute…
+
+> … and either a performance run or a workout.
+
+It looks like halfway through listing out the requirements, ChatGPT has re-interpreted what a performance run is. That’s not quite right… let’s figure out what GPT thinks a performance run is.
+
+![](https://miro.medium.com/v2/resize:fit:700/1*oIh2tQXUi7EUKGGQOvPDrQ.png)
+
+Ok, it feels like maybe we’re back on the same page again?
+
+Now let’s see what the rating criteria are:
+
+![](https://miro.medium.com/v2/resize:fit:700/1*16Npb1RsxNDhngUYoBMfkQ.png)
+
+**_A: Four runs per week, including a long run and either a workout or a race._**
+
+Another confusion. An A rating should only be possible with 5 runs.
+
+Time to call it quits for now!
