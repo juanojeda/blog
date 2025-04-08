@@ -25,7 +25,8 @@
       "@/components/*": ["components/*"],
       "@/api/*": ["app/api/*"],
       "@/app/*": ["app/*"],
-      "@/public/*": ["public/*"]
+      "@/public/*": ["public/*"],
+      "@/types/*": ["types/*"]
     }
   },
   "include": [
