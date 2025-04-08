@@ -15,9 +15,9 @@ tags:
 
 Over the weekend, I experimented to see if ChatGPT could be my dev team for a small project. For this experiment, I acted as a product owner, with a simple idea that I want to turn into code.
 
-The app is a simple one, based on a manual process that I’m already using in a Google spreadsheet, so the requirements are pretty clear in my mind, and pretty simple too (at least, I thought they were!).
+The app is a simple one, based on a manual process that I'm already using in a Google spreadsheet, so the requirements are pretty clear in my mind, and pretty simple too (at least, I thought they were!).
 
-**TL;DR:** I tried, and have currently failed, to build a viable prototype with ChatGPT as my dev team. I think the issue is in how I’m attempting to get the job done, but I haven’t quite figured out what I need to tweak yet. I went through an amusing (or frustrating, depending on your mindset?) number of iterations, each introducing a new confusion or complication, before I decided to hang my hat. I can’t help but feel like this is a new, more torturous, version of “[who’s on first](https://www.youtube.com/watch?v=kTcRRaXV-fg)”.
+**TL;DR:** I tried, and have currently failed, to build a viable prototype with ChatGPT as my dev team. I think the issue is in how I'm attempting to get the job done, but I haven't quite figured out what I need to tweak yet. I went through an amusing (or frustrating, depending on your mindset?) number of iterations, each introducing a new confusion or complication, before I decided to hang my hat. I can't help but feel like this is a new, more torturous, version of “[who's on first](https://www.youtube.com/watch?v=kTcRRaXV-fg)”.
 
 ## The Product Brief
 
@@ -33,21 +33,21 @@ After we nail down the rating logic, I can then extend this to fetching my runni
 
 ## The Requirements
 
-I told GPT what I wanted to build, and then asked it for some feedback on my criteria, to see if there were any edge cased I’d missed. It gave me some general training advice (eg. don’t be too strict with ratings, what about injury prevention? etc.)
+I told GPT what I wanted to build, and then asked it for some feedback on my criteria, to see if there were any edge cased I'd missed. It gave me some general training advice (eg. don't be too strict with ratings, what about injury prevention? etc.)
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*GyHMa2s7yzITlDaLu097HQ.png)
 
 but it also spotted an omission in my initial criteria:
 
-> **GPT:** What if you miss your long run? If you miss your long run but still meet the other criteria, it’s not clear what rating you would give yourself. You may want to decide on a separate rating for this scenario.
+> **GPT:** What if you miss your long run? If you miss your long run but still meet the other criteria, it's not clear what rating you would give yourself. You may want to decide on a separate rating for this scenario.
 
 Good thinking, GPT! I asked it to adjust the criteria, and then it seemed like my rating logic covered all the edge cases. Time to get coding!
 
 ## The first bit of code
 
-I asked it to represent the logic in Javascript. This is my native language, so I should be able to understand what it gives me, and make sure there aren’t any logic bugs.
+I asked it to represent the logic in Javascript. This is my native language, so I should be able to understand what it gives me, and make sure there aren't any logic bugs.
 
-It came up with this, which interestingly showed that there were some gaps in translating from requirements to code (comments added, to reflect my thinking as I’m reading it):
+It came up with this, which interestingly showed that there were some gaps in translating from requirements to code (comments added, to reflect my thinking as I'm reading it):
 
 ```
 function getWeeklyRating(runsPerWeek, longRun, performanceRun) {  
@@ -108,7 +108,7 @@ function getWeeklyRating(runsPerWeek, longRun, performanceRun) {
 }
 ```
 
-At this point, it became pretty clear that GPT was a bit confused — or maybe I am confused about how the code is supposed to be used? Either way, there’s some confusion. It still thinks a long run can be a race or include a workout, but it’s now explicitly saying that this condition will penalise the rating. Not quite what I meant!
+At this point, it became pretty clear that GPT was a bit confused — or maybe I am confused about how the code is supposed to be used? Either way, there's some confusion. It still thinks a long run can be a race or include a workout, but it's now explicitly saying that this condition will penalise the rating. Not quite what I meant!
 
 ## In which I try to steer the code
 
@@ -168,22 +168,22 @@ Interestingly, the summary that GPT gave for these helper functions seemed to sh
 
 ## A test driven approach
 
-I tried to go through a few more iterations, before I tried another approach. Let’s give it some test data with expected ratings, and ask it to write the code that will make it pass. TDD, right?
+I tried to go through a few more iterations, before I tried another approach. Let's give it some test data with expected ratings, and ask it to write the code that will make it pass. TDD, right?
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*GVrEFJfxsojkOFJmIVMfcA.png)
 
-The code that ChatGPT created isn’t what I wanted. I’ll let ChatGPT summarise for you:
+The code that ChatGPT created isn't what I wanted. I'll let ChatGPT summarise for you:
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*FrBvQtFQepLFSpk5tXk28w.png)
 
-> **GPT:** In this updated code, I’ve adjusted the logic of each rating case to match the ratings you specified:  
+> **GPT:** In this updated code, I've adjusted the logic of each rating case to match the ratings you specified:  
 >   
 > 1. For an “A+” rating, the function checks if the array has 5 runs, a long run, and a workout as the first run, and a race as the fourth run.  
 > 2. For an “A” rating, the function checks if the array has 5 runs, a long run, and no performance runs.  
 > 3. For a “B” rating, the function checks if the array has 4 runs, a long run, and no performance runs, or if the array has 4 runs, a long run, and a workout as the first run.  
 > …
 
-To summarise that summary, it seems like GPT cares about the order of the runs. This isn’t something I care about, and actually I want this to not be the case!
+To summarise that summary, it seems like GPT cares about the order of the runs. This isn't something I care about, and actually I want this to not be the case!
 
 ## Back to the requirements
 
@@ -195,13 +195,13 @@ Ok, that looks pretty goo- … wait a minute…
 
 > … and either a performance run or a workout.
 
-It looks like halfway through listing out the requirements, ChatGPT has re-interpreted what a performance run is. That’s not quite right… let’s figure out what GPT thinks a performance run is.
+It looks like halfway through listing out the requirements, ChatGPT has re-interpreted what a performance run is. That's not quite right… let's figure out what GPT thinks a performance run is.
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*oIh2tQXUi7EUKGGQOvPDrQ.png)
 
-Ok, it feels like maybe we’re back on the same page again?
+Ok, it feels like maybe we're back on the same page again?
 
-Now let’s see what the rating criteria are:
+Now let's see what the rating criteria are:
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*16Npb1RsxNDhngUYoBMfkQ.png)
 

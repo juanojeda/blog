@@ -1,18 +1,16 @@
 import { formatRelative } from "date-fns";
 import { enAU } from 'date-fns/locale';
 import Typography from "@mui/material/Typography";
-import { SxProps, TypographyProps } from "@mui/system";
-import { Theme } from "@mui/material";
 
 const formatDate = (date: string) => {
   const dateObj = new Date(date);
 
   const formatter = {
-    lastWeek: "'last' eeee 'at' p",
-    yesterday: "'yesterday 'at' p",
-    today: "'today 'at' p",
-    tomorrow: "'tomorrow 'at' p",
-    nextWeek: "'next' eeee 'at' p",
+    lastWeek: "'last' eeee 'at some point'",
+    yesterday: "'yesterday at some time'",
+    today: "'today, fresh off the press'",
+    tomorrow: "'tomorrow somehow?'",
+    nextWeek: "'next' eeee 'magically?'",
     other: 'dd MMM yyyy',
   };
 
