@@ -15,7 +15,7 @@ const SiteHeader = () => {
     pt: 0
   }} component="nav">
     <Container max-width="lg" sx={{ display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
-      <Paper elevation={0} sx={{ p: 1, bgcolor: 'text.primary', width: 80, height: 80, left: 0, display: "flex", alignItems: 'center', justifyContent: 'center', borderRadius: 0 }}>
+      <Paper elevation={0} sx={{ p: 1, bgcolor: 'text.primary', width: 80, height: 80, left: 0, display: "flex", alignItems: 'center', alignSelf: "self-start", justifyContent: 'center', borderRadius: 0 }}>
         <Typography component="h1" variant="h6" color="white" margin="0">
           <Link href="/" underline="none" color="inherit">
             Juan Ojeda
@@ -23,7 +23,7 @@ const SiteHeader = () => {
         </Typography>
       </Paper>
 
-      <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+      <Box sx={{ display: { xs: 'none', sm: 'block' }, pt: 1 }}>
         {navItems.map((item) => (
           <Button LinkComponent={Link} key={item.name} sx={{ color: '#fff' }} href={item.path}>
             {item.name}

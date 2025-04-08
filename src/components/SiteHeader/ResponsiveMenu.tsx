@@ -23,7 +23,9 @@ const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ navItems }) => {
   };
 
   return (
-    <Box>
+    <Box sx={{
+      display: { xs: 'flex', sm: 'none' },
+    }}>
       <IconButton
         color='inherit'
         aria-label="open drawer"
