@@ -1,7 +1,6 @@
-import { getPosts } from 'functions/getPosts';
 import AboutLayout from './AboutLayout';
 
-export default async function () {
+export default async function About() {
 
   const { default: Post, frontmatter } = await import('./About.mdx');
 
