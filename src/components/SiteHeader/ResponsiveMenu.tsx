@@ -3,6 +3,7 @@
 import React, { use } from 'react';
 import { AppBar, Box, Container, Divider, Drawer, Icon, IconButton, Link, List, ListItem, ListItemButton, ListItemText, Paper, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 type NavItem = {
   name: string;
@@ -26,10 +27,11 @@ const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ navItems }) => {
       <IconButton
         color='inherit'
         aria-label="open drawer"
-        edge="start"
         onClick={handleDrawerToggle}
         sx={{
-          display: { xs: 'block', sm: 'none' }
+          display: { xs: 'flex', sm: 'none' },
+          alignItems: 'center',
+          mt: 1
         }}
       >
         <MenuIcon />
@@ -39,6 +41,9 @@ const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ navItems }) => {
           display: { xs: 'block', sm: 'none' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 'auto', backgroundColor: 'primary.dark' }
         }}>
+          <IconButton color='inherit' aria-label="close drawer" onClick={handleDrawerToggle} sx={{ position: 'absolute', right: 0, top: 0, m: 2, zIndex: 1 }}>
+            <CloseIcon sx={{ color: 'primary.contrastText' }} />
+          </IconButton>
           <List sx={{ textAlign: 'left', py: 4, px: 2 }}>
             {navItems.map((item) => (
               <ListItem key={item.name}>
