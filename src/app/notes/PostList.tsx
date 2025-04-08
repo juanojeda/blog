@@ -7,10 +7,10 @@ import FormattedDate from "@/components/FormattedDate";
 export default function HomePage({ posts }) {
   return (
     <Box sx={{ py: 4 }}>
-      <Typography variant="h1" sx={{ mt: 2 }}>Recent notes</Typography>
+      <Typography variant="h1" sx={{ mt: 3, mb: 0 }}>Recent notes</Typography>
 
-      <Grid container>
-        <Grid size={{ xs: 12, md: 9 }}>
+      <Grid container sx={{ pt: 6 }}>
+        <Grid size={{ xs: 12, md: 8, lg: 9 }}>
           <Paper elevation={0} sx={{ px: 4, py: 4, mb: 2 }}>
             {posts.map((post) => (
               <Box key={post.slug} sx={{ mb: 4 }}>

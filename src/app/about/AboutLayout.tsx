@@ -2,10 +2,10 @@ import { Box, Grid2 as Grid, Paper, Typography } from "@mui/material";
 
 const AboutLayout = ({ frontmatter, children }) => {
   return (
-    <Box component={'article'}>
-      <Grid sx={{ px: 0, py: 3 }} container justifyContent={'space-between'} alignItems={'flex-end'}>
+    <Box sx={{ py: 4 }} component={'article'}>
+      <Typography sx={{ mb: 0, mt: 3 }} variant="h1">{frontmatter.title}</Typography>
+      <Grid sx={{ pt: 6 }} container justifyContent={'space-between'} alignItems={'flex-end'}>
         <Grid size={12}>
-          <Typography sx={{ mb: 0, mt: 3 }} variant="h1">{frontmatter.title}</Typography>
         </Grid>
       </Grid>
       <Grid container>
