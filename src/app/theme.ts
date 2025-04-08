@@ -12,6 +12,7 @@ const baseTheme = createTheme({
     mode: "light",
     primary: {
       main: "rgb(70, 90, 219)",
+      light: lighten("rgb(70, 90, 219)", 0.4),
     },
     background: {
       default: "hsl(195,34%,93%)",
@@ -154,6 +155,35 @@ const theme = createTheme(baseTheme, {
           variants: [
             {
               props: { variant: "h5" },
+              style: {
+                color: baseTheme.palette.text.primary,
+                display: "inline-block",
+                textDecoration: "none",
+                paddingBottom: baseTheme.spacing(0.5),
+                position: "relative",
+                margin: 0,
+                "&:hover": {
+                  color: lighten(baseTheme.palette.primary.main, 0.2),
+                },
+                "&:after": {
+                  content: '""',
+                  display: "block",
+                  width: "60%",
+                  position: "absolute",
+                  left: 0,
+                  bottom: 0,
+                  height: baseTheme.spacing(0.25),
+                  backgroundColor: baseTheme.palette.primary.main,
+                },
+                "&:hover:after": {
+                  width: "100%",
+                  transition: "width 0.2s ease-in-out",
+                  transitionDelay: "0.3s",
+                },
+              },
+            },
+            {
+              props: { variant: "h6" },
               style: {
                 color: baseTheme.palette.text.primary,
                 display: "inline-block",
