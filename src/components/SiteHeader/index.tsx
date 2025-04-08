@@ -4,6 +4,7 @@ import ResponsiveMenu from './ResponsiveMenu';
 
 const navItems = [
   { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' },
   { name: 'Notes', path: '/notes' }
 ];
 

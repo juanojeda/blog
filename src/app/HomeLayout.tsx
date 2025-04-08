@@ -45,10 +45,10 @@ const HomeLayout = () => {
         <Box sx={{ px: 4 }}>
           <Typography variant="h1">I'm a software engineer in Melbourne, Australia.</Typography>
           <Typography variant="h5" component="p">
-            You can find me on <Link variant="h5" href="https://www.linkedin.com/in/juan-ojeda">LinkedIn.</Link>
+            This is where I share <Link variant="h5" href="/notes">my notes.</Link>
           </Typography>
           <Typography variant="h5" component="p">
-            This is where I share <Link variant="h5" href="/notes">my notes.</Link>
+            You can find me on <Link variant="h5" href="https://www.linkedin.com/in/juan-ojeda">LinkedIn.</Link>
           </Typography>
         </Box>
       </Grid>
