@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     openGraph: {
       title: frontmatter.title,
       description: frontmatter.summary,
-      url: `https://example.com/posts/${slug}`,
+      url: `https://www.juanojeda.com/notes/${slug}`,
     },
   };
 }
