@@ -9,12 +9,12 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
   // @/content alias doesn't work for some reason
   const { frontmatter } = await import('../../../content/' + slug + '.mdx');
 
-  return {
+  const metadata = {
     title: frontmatter.title,
     description: frontmatter.summary,
     openGraph: {
@@ -23,6 +23,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       url: `https://www.juanojeda.com/notes/${slug}`,
     },
   };
+
+  console.log('metadata', metadata);
+
+  return metadata;
 }
 
 export default async function Post({ params }) {
