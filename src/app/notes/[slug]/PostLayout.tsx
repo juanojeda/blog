@@ -95,7 +95,7 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
                 <ListItem key={post.slug} sx={{ px: 0 }}>
                   <Stack>
                     <Box>
-                      <Link href={`/posts/${post.slug}`}>
+                      <Link href={`/notes/${post.slug}`}>
                         <Typography variant="body2" component="span">{post.title}</Typography>
                       </Link>
                     </Box>

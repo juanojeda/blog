@@ -15,7 +15,7 @@ export default function HomePage({ posts }) {
             {posts.map((post) => (
               <Box key={post.slug} sx={{ mb: 4 }}>
                 <Typography variant="h5" sx={{ mt: 0, mb: 1 }}>
-                  <Link variant="h5" href={`/posts/${post.slug}`}>
+                  <Link variant="h5" href={`/notes/${post.slug}`}>
                     {post.title}
                   </Link>
                 </Typography>
@@ -23,7 +23,7 @@ export default function HomePage({ posts }) {
                 <Typography variant="body1" component="p">
                   {post.summary}
                 </Typography>
-                <Link href={`/posts/${post.slug}`}>
+                <Link href={`/notes/${post.slug}`}>
                   Read more →
                 </Link>
               </Box>
