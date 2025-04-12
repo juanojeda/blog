@@ -1,6 +1,7 @@
 import HalftoneImage from '@/components/HalftoneImage';
 import { Box, Grid2 as Grid, Link, Stack, Typography } from '@mui/material';
 import profilePic from '@/public/images/profile.jpg';
+import HalftoneBox from '@/components/HalftoneBox';
 
 const HomeLayout = () => {
   return (
@@ -12,7 +13,6 @@ const HomeLayout = () => {
       }} sx={{
         bgcolor: "primary.dark",
         position: "relative",
-        height: { xs: "40vh", md: "initial" }
       }}>
         <Box sx={{
           position: "absolute",
@@ -43,7 +43,7 @@ const HomeLayout = () => {
         justifyContent: "center",
         alignItems: "center"
       }}>
-        <Box sx={{ px: 4 }}>
+        <HalftoneBox sx={{ px: 4 }} height="100%" display="flex" flexDirection="column" justifyContent="center" fade='80%'>
           <Typography variant="h1">I'm a software engineer in Melbourne, Australia.</Typography>
           <Typography variant="h5" component="p">
             Let me tell you <Link variant="h5" href="/about">about myself</Link>.
@@ -51,7 +51,7 @@ const HomeLayout = () => {
           <Typography variant="h5" component="p">
             Or maybe you'd prefer to read some of <Link variant="h5" href="/notes">my notes.</Link>
           </Typography>
-        </Box>
+        </HalftoneBox>
       </Grid>
     </Grid >
   );
