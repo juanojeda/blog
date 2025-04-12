@@ -1,7 +1,9 @@
 import HalftoneImage from '@/components/HalftoneImage';
-import { Box, Grid2 as Grid, Link, Stack, Typography } from '@mui/material';
+import { Box, Grid2 as Grid, Link, Paper, Stack, Typography } from '@mui/material';
 import profilePic from '@/public/images/profile.jpg';
 import HalftoneBox from '@/components/HalftoneBox';
+import React from 'react';
+import WordScroller from '@/components/WordScroller';
 
 const HomeLayout = () => {
   return (
@@ -21,7 +23,7 @@ const HomeLayout = () => {
           width: "100%",
           height: "100%",
         }}>
-          <HalftoneImage src={profilePic} alt="Halftone" width="100%" height="100%" />
+          <HalftoneImage src={profilePic} alt="profile picture of Juan, smiling with hands on hips" width="100%" height="100%" />
         </Box>
         <Stack sx={{
           alignItems: "center",
@@ -44,7 +46,11 @@ const HomeLayout = () => {
         alignItems: "center"
       }}>
         <HalftoneBox sx={{ px: 4 }} height="100%" display="flex" flexDirection="column" justifyContent="center" fade='40%'>
-          <Typography variant="h1">I'm a software engineer in Melbourne, Australia.</Typography>
+          <Typography variant="h1">I'm a <WordScroller timeoutMs={3000} defaultWord="software engineer" otherWords={[
+            "designer",
+            "tech lead",
+            "problem solver"
+          ]} /> in Melbourne, Australia.</Typography>
           <Typography variant="h5" component="p">
             Let me tell you <Link variant="h5" href="/about">about myself</Link>.
           </Typography>
