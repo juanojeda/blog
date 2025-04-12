@@ -43,7 +43,7 @@ const HomeLayout = () => {
         justifyContent: "center",
         alignItems: "center"
       }}>
-        <HalftoneBox sx={{ px: 4 }} height="100%" display="flex" flexDirection="column" justifyContent="center" fade='80%'>
+        <HalftoneBox sx={{ px: 4 }} height="100%" display="flex" flexDirection="column" justifyContent="center" fade='40%'>
           <Typography variant="h1">I'm a software engineer in Melbourne, Australia.</Typography>
           <Typography variant="h5" component="p">
             Let me tell you <Link variant="h5" href="/about">about myself</Link>.
