@@ -1,5 +1,11 @@
 import CommonLayout from "@/components/CommonLayout";
 import { Box, Grid2 as Grid, Link, Paper, Typography } from "@mui/material";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Juan Ojeda — Page not found',
+  description: "We can't find the page you're looking for."
+}
 
 export default function NotFound() {
   return (
