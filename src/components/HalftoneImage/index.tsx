@@ -19,14 +19,14 @@ const ImageWrapper = styled(HalftoneBox) <{ color?: keyof typeof theme.palette; 
   background-color: ${props => props.color ? theme.palette[props.color].main : theme.palette.primary.main};
   width: ${props => props.width};
   height: ${props => props.height};
-  transition: opacity 0.3s ease-in-out;
-
+  
   &::before {
+    transition: opacity 0.3s ease-in-out;
     z-index: 0;
   }
   
   &:hover::before {
-    opacity: 0.2,
+    opacity: 0;
   }
 `;
 
