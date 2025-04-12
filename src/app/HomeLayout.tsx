@@ -28,7 +28,8 @@ const HomeLayout = () => {
           justifyContent: "center",
           height: "100%",
           position: "relative",
-          px: 4
+          px: 4,
+          pointerEvents: "none"
         }}>
           <Typography variant='poster' color="primary.contrastText" textAlign="center">Hi, I'm Juan.</Typography>
         </Stack>

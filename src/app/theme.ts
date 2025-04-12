@@ -1,4 +1,3 @@
-"use client";
 import { firaCode, firaSans, merriweather } from "@/components/fonts/fonts";
 import { alpha, createTheme, lighten } from "@mui/material/styles";
 import { NextLink } from "@/components/NextLink";
