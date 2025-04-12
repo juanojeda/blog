@@ -28,7 +28,6 @@ export default function HomePage({ posts }) {
                 </Link>
               </Box>
             ))}
-
           </Paper>
         </Grid>
       </Grid>

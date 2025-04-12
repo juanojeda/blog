@@ -1,6 +1,7 @@
 import { getPosts } from "functions/getPosts";
 import PostLayout from "./PostLayout";
 import { getRelatedPosts } from "functions/getRelatedPosts";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const posts = await getPosts();
@@ -24,17 +25,20 @@ export async function generateMetadata({ params }) {
     },
   };
 
-  console.log('metadata', metadata);
-
   return metadata;
 }
 
 export default async function Post({ params }) {
   const { slug } = await params;
   // @/content alias doesn't work for some reason
-  const { default: Post, frontmatter } = await import('../../../content/' + slug + '.mdx');
+  try {
+    const { default: Post, frontmatter } = await import('../../../content/' + slug + '.mdx');
+    const relatedPosts = await getRelatedPosts(slug)
 
-  const relatedPosts = await getRelatedPosts(slug)
+    return <PostLayout frontmatter={frontmatter} relatedPosts={relatedPosts}><Post /></PostLayout>;
+  }
+  catch (e) {
+    notFound();
+  }
 
-  return <PostLayout frontmatter={frontmatter} relatedPosts={relatedPosts}><Post /></PostLayout>;
 }
