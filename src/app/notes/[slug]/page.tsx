@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
   const { frontmatter } = await import('../../../content/' + slug + '.mdx');
 
   const metadata = {
-    title: `Juan Ojeda - ${frontmatter.title}`,
+    title: `Juan Ojeda — ${frontmatter.title}`,
     description: frontmatter.summary,
     openGraph: {
       title: frontmatter.title,
