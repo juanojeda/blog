@@ -1,6 +1,7 @@
-import HomeLayout from "./HomeLayout";
+import HomePage from "./HomePage";
 
 export default async function () {
   return (
-    <HomeLayout />)
+    <HomePage />
+  )
 }

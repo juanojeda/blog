@@ -1,5 +1,5 @@
 import HalftoneImage from '@/components/HalftoneImage';
-import { Box, Grid2 as Grid, Link, Paper, Stack, Typography } from '@mui/material';
+import { Box, Grid, Link, Stack, Typography } from '@mui/material';
 import profilePic from '@/public/images/profile.jpg';
 import HalftoneBox from '@/components/HalftoneBox';
 import React from 'react';
@@ -47,7 +47,7 @@ const HomeLayout = () => {
       }}>
         <HalftoneBox sx={{ px: 4 }} height="100%" display="flex" flexDirection="column" justifyContent="center" fade='40%'>
           <Typography variant="h1">I'm a <WordScroller timeoutMs={3000} defaultWord="software engineer" otherWords={[
-            "designer",
+            "product designer",
             "tech lead",
             "problem solver"
           ]} /> in Melbourne, Australia.</Typography>

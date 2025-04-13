@@ -1,7 +1,8 @@
 import { getPosts } from "functions/getPosts";
-import PostLayout from "./PostLayout";
+import PostPage from "./PostPage";
 import { getRelatedPosts } from "functions/getRelatedPosts";
 import { notFound } from "next/navigation";
+import CommonLayout from "@/components/CommonLayout";
 
 export async function generateStaticParams() {
   const posts = await getPosts();
@@ -35,7 +36,13 @@ export default async function Post({ params }) {
     const { default: Post, frontmatter } = await import('../../../content/' + slug + '.mdx');
     const relatedPosts = await getRelatedPosts(slug)
 
-    return <PostLayout frontmatter={frontmatter} relatedPosts={relatedPosts}><Post /></PostLayout>;
+    return (
+      <CommonLayout fade="10%">
+        <PostPage frontmatter={frontmatter} relatedPosts={relatedPosts}>
+          <Post />
+        </PostPage>
+      </CommonLayout>
+    );
   }
   catch (e) {
     notFound();

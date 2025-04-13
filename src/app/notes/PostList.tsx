@@ -1,7 +1,7 @@
 'use client'
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import { Box, Grid2 as Grid, Paper } from "@mui/material";
+import { Box, Grid, Paper } from "@mui/material";
 import FormattedDate from "@/components/FormattedDate";
 
 export default function HomePage({ posts }) {

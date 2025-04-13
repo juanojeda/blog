@@ -1,4 +1,5 @@
 "use client";
+import { Box } from '@mui/material';
 import React from 'react';
 
 const WordScroller = ({ defaultWord, otherWords, timeoutMs }: { defaultWord: string; otherWords: string[], timeoutMs: number }) => {
@@ -16,7 +17,7 @@ const WordScroller = ({ defaultWord, otherWords, timeoutMs }: { defaultWord: str
     return () => clearInterval(interval);
   }, [wordsArr]);
 
-  return <>{currentWord}</>
+  return <Box sx={{ fontStyle: "italic" }}>{currentWord}</Box>
 }
 
 export default WordScroller;

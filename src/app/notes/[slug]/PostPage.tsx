@@ -1,6 +1,6 @@
 "use client";
 import theme from "@/app/theme";
-import { alpha, Box, Grid2 as Grid, Link, List, ListItem, Paper, Stack, Typography } from "@mui/material";
+import { alpha, Box, Grid, Link, List, ListItem, Paper, Stack, Typography } from "@mui/material";
 import FormattedDate from "@/components/FormattedDate";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";

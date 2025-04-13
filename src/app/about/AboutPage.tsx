@@ -1,4 +1,4 @@
-import { Box, Grid2 as Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 
 const AboutLayout = ({ frontmatter, children }) => {
   return (

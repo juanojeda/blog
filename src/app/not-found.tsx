@@ -1,5 +1,5 @@
 import CommonLayout from "@/components/CommonLayout";
-import { Box, Grid2 as Grid, Link, Paper, Typography } from "@mui/material";
+import { Box, Grid, Link, Paper, Typography } from "@mui/material";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
