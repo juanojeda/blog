@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import CommonLayout from "@/components/CommonLayout";
+import { Typography } from "@mui/material";
+import RecipePage from "./RecipePage";
 
 export async function generateMetadata(): Promise<Metadata> {
   const metadata: Metadata = {
@@ -8,4 +10,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 
   return metadata;
+}
+
+export default async function RecipesListPage() {
+  return (
+    <CommonLayout>
+      <RecipePage />
+    </CommonLayout>
+  )
 }
