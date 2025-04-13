@@ -11,7 +11,7 @@ tags:
   - javascript
 ---
 
-*Note: This post was originally posted [on Medium](https://medium.com/everestengineering/can-chatgpt-be-my-dev-team-6a17c918154).*
+_Note: This post was originally posted [on Medium](https://medium.com/everestengineering/can-chatgpt-be-my-dev-team-6a17c918154)._
 
 Over the weekend, I experimented to see if ChatGPT could be my dev team for a small project. For this experiment, I acted as a product owner, with a simple idea that I want to turn into code.
 
@@ -50,61 +50,60 @@ I asked it to represent the logic in Javascript. This is my native language, so 
 It came up with this, which interestingly showed that there were some gaps in translating from requirements to code (comments added, to reflect my thinking as I'm reading it):
 
 ```
-function getWeeklyRating(runsPerWeek, longRun, performanceRun) {  
-  if (runsPerWeek === 5 && longRun && performanceRun) { // <-- awesome, nailed it!  
-    if (performanceRun === "workout" && longRun === "race") { // <-- what the?  
-      return "A+";  
-    } else if (performanceRun === "race" && longRun === "workout") { // <-- uh oh, somethings' weird here  
-      return "A+";  
-    } else {  
-      return "A";  
-    }  
-// the rest seems like it's ok. Should be easy to tweak this!  
-  } else if (runsPerWeek === 4 && longRun && performanceRun) {  
-    return "B";  
-  } else if (runsPerWeek === 4 && !longRun && performanceRun) {  
-    return "C";  
-  } else if (runsPerWeek === 3 && longRun && performanceRun) {  
-    return "C";  
-  } else if (runsPerWeek === 3 && !longRun && performanceRun) {  
-    return "D";  
-  } else {  
-    return "N/A";  
-  }  
+function getWeeklyRating(runsPerWeek, longRun, performanceRun) {
+  if (runsPerWeek === 5 && longRun && performanceRun) { // <-- awesome, nailed it!
+    if (performanceRun === "workout" && longRun === "race") { // <-- what the?
+      return "A+";
+    } else if (performanceRun === "race" && longRun === "workout") { // <-- uh oh, somethings' weird here
+      return "A+";
+    } else {
+      return "A";
+    }
+// the rest seems like it's ok. Should be easy to tweak this!
+  } else if (runsPerWeek === 4 && longRun && performanceRun) {
+    return "B";
+  } else if (runsPerWeek === 4 && !longRun && performanceRun) {
+    return "C";
+  } else if (runsPerWeek === 3 && longRun && performanceRun) {
+    return "C";
+  } else if (runsPerWeek === 3 && !longRun && performanceRun) {
+    return "D";
+  } else {
+    return "N/A";
+  }
 }
 ```
-
 
 In this code, it seems like a “long run” can be a workout a race. This seems off, but it seemed like a good first pass, with a small misunderstanding, so I tried to clarify what the criteria should be:
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*rBTiKZsIS_BSkFmAPhQx6Q.png)
 
 ```
-function getWeeklyRating(runsPerWeek, longRun, performanceRun) {  
-  if (runsPerWeek === 5 && longRun && performanceRun) {  
-    if (performanceRun === "race" && !longRun.includes("workout")) { // <-- oh dear...   
-      return "A";  
-    } else if (performanceRun === "workout" && longRun === "workout") {  
-      return "A";  
-    } else if (performanceRun === "workout" && longRun === "race") {  
-      return "A";  
-    } else if (performanceRun === "race" && longRun === "race") {  
-      return "A+";  
-    }  
-  } else if (runsPerWeek === 4 && longRun && performanceRun) {  
-    if (!longRun.includes("workout")) {  
-      return "B";  
-    } else {  
-      return "C";  
-    }  
-  } else if (runsPerWeek === 3 && longRun && performanceRun) {  
-    if (!longRun.includes("workout")) {  
-      return "C";  
-    } else {  
-      return "D";  
-    }  
-  }  
-  return "F";  
+function getWeeklyRating(runsPerWeek, longRun, performanceRun) {
+  if (runsPerWeek === 5 && longRun && performanceRun) {
+    if (performanceRun === "race" && !longRun.includes("workout")) { // <-- oh dear...
+      return "A";
+    } else if (performanceRun === "workout" && longRun === "workout") {
+      return "A";
+    } else if (performanceRun === "workout" && longRun === "race") {
+      return "A";
+    } else if (performanceRun === "race" && longRun === "race") {
+      return "A+";
+    }
+  } else if (runsPerWeek === 4 && longRun && performanceRun) {
+    if (!longRun.includes("workout")) {
+      return "B";
+    } else {
+      return "C";
+    }
+  } else if (runsPerWeek === 3 && longRun && performanceRun) {
+    if (!longRun.includes("workout")) {
+      return "C";
+    } else {
+      return "D";
+    }
+  }
+  return "F";
 }
 ```
 
@@ -117,44 +116,44 @@ I thought maybe giving it a helping hand by defining the function input would be
 ![](https://miro.medium.com/v2/resize:fit:700/1*RG0N0R5eR6RdRxHtjxSDOw.png)
 
 ```
-function getWeeklyRating(runs) {  
-  const numRuns = runs.length;  
-  const hasLongRun = runs.includes("long run");  
-  const hasPerformanceRun = runs.includes("race") || runs.includes("workout"); // <-- ok, looks like we've cleared up that confusion  
-  
-  if (numRuns === 5 && hasLongRun && hasPerformanceRun) {  
-    if (runs.includes("race") && !hasWorkout(runs, "long run")) { // <-- err... Not sure what's going on here  
-      return "A";  
-    } else if (runs.includes("workout") && runs.includes("long run") && !hasRace(runs, "long run")) { // ok, I clearly don't know what's happening. let's check the function definition ...  
-      return "A";  
-    } else if (runs.includes("workout") && hasRace(runs, "long run")) {  
-      return "A";  
-    } else if (runs.includes("race") && hasRace(runs, "long run")) {  
-      return "A+";  
-    }  
-  } else if (numRuns === 4 && hasLongRun && hasPerformanceRun) {  
-    if (!hasWorkout(runs, "long run")) {  
-      return "B";  
-    } else {  
-      return "C";  
-    }  
-  } else if (numRuns === 3 && hasLongRun && hasPerformanceRun) {  
-    if (!hasWorkout(runs, "long run")) {  
-      return "C";  
-    } else {  
-      return "D";  
-    }  
-  }  
-  return "F";  
-}  
-  
-// I don't quite get why we pass a second type to either of these functions...  
-function hasRace(runs, type) {  
-  return runs.includes("race") && runs.includes(type);  
-}  
-  
-function hasWorkout(runs, type) {  
-  return runs.includes("workout") && runs.includes(type);  
+function getWeeklyRating(runs) {
+  const numRuns = runs.length;
+  const hasLongRun = runs.includes("long run");
+  const hasPerformanceRun = runs.includes("race") || runs.includes("workout"); // <-- ok, looks like we've cleared up that confusion
+
+  if (numRuns === 5 && hasLongRun && hasPerformanceRun) {
+    if (runs.includes("race") && !hasWorkout(runs, "long run")) { // <-- err... Not sure what's going on here
+      return "A";
+    } else if (runs.includes("workout") && runs.includes("long run") && !hasRace(runs, "long run")) { // ok, I clearly don't know what's happening. let's check the function definition ...
+      return "A";
+    } else if (runs.includes("workout") && hasRace(runs, "long run")) {
+      return "A";
+    } else if (runs.includes("race") && hasRace(runs, "long run")) {
+      return "A+";
+    }
+  } else if (numRuns === 4 && hasLongRun && hasPerformanceRun) {
+    if (!hasWorkout(runs, "long run")) {
+      return "B";
+    } else {
+      return "C";
+    }
+  } else if (numRuns === 3 && hasLongRun && hasPerformanceRun) {
+    if (!hasWorkout(runs, "long run")) {
+      return "C";
+    } else {
+      return "D";
+    }
+  }
+  return "F";
+}
+
+// I don't quite get why we pass a second type to either of these functions...
+function hasRace(runs, type) {
+  return runs.includes("race") && runs.includes(type);
+}
+
+function hasWorkout(runs, type) {
+  return runs.includes("workout") && runs.includes(type);
 }
 ```
 
@@ -176,12 +175,12 @@ The code that ChatGPT created isn't what I wanted. I'll let ChatGPT summarise fo
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*FrBvQtFQepLFSpk5tXk28w.png)
 
-> **GPT:** In this updated code, I've adjusted the logic of each rating case to match the ratings you specified:  
->   
-> 1. For an “A+” rating, the function checks if the array has 5 runs, a long run, and a workout as the first run, and a race as the fourth run.  
-> 2. For an “A” rating, the function checks if the array has 5 runs, a long run, and no performance runs.  
+> **GPT:** In this updated code, I've adjusted the logic of each rating case to match the ratings you specified:
+>
+> 1. For an “A+” rating, the function checks if the array has 5 runs, a long run, and a workout as the first run, and a race as the fourth run.
+> 2. For an “A” rating, the function checks if the array has 5 runs, a long run, and no performance runs.
 > 3. For a “B” rating, the function checks if the array has 4 runs, a long run, and no performance runs, or if the array has 4 runs, a long run, and a workout as the first run.  
-> …
+>    …
 
 To summarise that summary, it seems like GPT cares about the order of the runs. This isn't something I care about, and actually I want this to not be the case!
 

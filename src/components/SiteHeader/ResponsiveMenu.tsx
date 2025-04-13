@@ -1,9 +1,24 @@
 "use client";
 
-import React, { use } from 'react';
-import { AppBar, Box, Container, Divider, Drawer, Icon, IconButton, Link, List, ListItem, ListItemButton, ListItemText, Paper, Typography } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import React, { use } from "react";
+import {
+  AppBar,
+  Box,
+  Container,
+  Divider,
+  Drawer,
+  Icon,
+  IconButton,
+  Link,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Paper,
+  Typography,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 type NavItem = {
   name: string;
@@ -15,7 +30,6 @@ type ResponsiveMenuProps = {
 };
 
 const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ navItems }) => {
-
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -23,33 +37,53 @@ const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ navItems }) => {
   };
 
   return (
-    <Box sx={{
-      display: { xs: 'flex', sm: 'none' },
-    }}>
+    <Box
+      sx={{
+        display: { xs: "flex", sm: "none" },
+      }}
+    >
       <IconButton
-        color='inherit'
+        color="inherit"
         aria-label="open drawer"
         onClick={handleDrawerToggle}
         sx={{
-          display: { xs: 'flex', sm: 'none' },
-          alignItems: 'center',
-          mt: 1
+          display: { xs: "flex", sm: "none" },
+          alignItems: "center",
+          mt: 1,
         }}
       >
         <MenuIcon />
       </IconButton>
-      <Box component="nav" sx={{ display: { xs: 'block', sm: 'none' } }}>
-        <Drawer anchor='top' variant="temporary" open={mobileOpen} onClose={handleDrawerToggle} ModalProps={{ keepMounted: true }} sx={{
-          display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 'auto', backgroundColor: 'primary.dark' }
-        }}>
-          <IconButton color='inherit' aria-label="close drawer" onClick={handleDrawerToggle} sx={{ position: 'absolute', right: 0, top: 0, m: 2, zIndex: 1 }}>
-            <CloseIcon sx={{ color: 'primary.contrastText' }} />
+      <Box component="nav" sx={{ display: { xs: "block", sm: "none" } }}>
+        <Drawer
+          anchor="top"
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{ keepMounted: true }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: "auto",
+              backgroundColor: "primary.dark",
+            },
+          }}
+        >
+          <IconButton
+            color="inherit"
+            aria-label="close drawer"
+            onClick={handleDrawerToggle}
+            sx={{ position: "absolute", right: 0, top: 0, m: 2, zIndex: 1 }}
+          >
+            <CloseIcon sx={{ color: "primary.contrastText" }} />
           </IconButton>
-          <List sx={{ textAlign: 'left', py: 4, px: 2 }}>
+          <List sx={{ textAlign: "left", py: 4, px: 2 }}>
             {navItems.map((item) => (
               <ListItem key={item.name}>
-                <Link href={item.path} variant='h5' color="primary.contrastText">{item.name}</Link>
+                <Link href={item.path} variant="h5" color="primary.contrastText">
+                  {item.name}
+                </Link>
               </ListItem>
             ))}
           </List>
@@ -57,6 +91,6 @@ const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ navItems }) => {
       </Box>
     </Box>
   );
-}
+};
 
 export default ResponsiveMenu;

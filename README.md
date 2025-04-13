@@ -34,4 +34,5 @@ There are a couple of ways to run it on dev, but the most reliable to make sure 
 ```
 netlify dev
 ```
+
 This runs your project locally in a way that mimics how it will behave when deployed on Netlify. It sets up a local development server, handles serverless functions, and simulates Netlify's environment.

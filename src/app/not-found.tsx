@@ -3,23 +3,30 @@ import { Box, Grid, Link, Paper, Typography } from "@mui/material";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Juan Ojeda — Page not found',
-  description: "We can't find the page you're looking for."
-}
+  title: "Juan Ojeda — Page not found",
+  description: "We can't find the page you're looking for.",
+};
 
 export default function NotFound() {
   return (
     <CommonLayout>
-      <Box component={'article'} sx={{ px: 0, py: 3 }}>
-        <Typography sx={{ mb: 0 }} variant="h1">Uh oh, that page doesn't exist!</Typography>
+      <Box component={"article"} sx={{ px: 0, py: 3 }}>
+        <Typography sx={{ mb: 0 }} variant="h1">
+          {"Uh oh, that page doesn't exist!"}
+        </Typography>
       </Box>
       <Grid container>
         <Grid size={{ xs: 12, md: 8, lg: 9 }}>
-          <Paper sx={{
-            py: 4,
-            px: 4,
-          }} elevation={0}>
-            <Typography variant="body1">We can't find the page you're looking for.</Typography>
+          <Paper
+            sx={{
+              py: 4,
+              px: 4,
+            }}
+            elevation={0}
+          >
+            <Typography variant="body1">
+              {"We can't find the page you're looking for."}
+            </Typography>
             <Link variant="h5" href="/">
               Back to home
             </Link>
@@ -27,5 +34,5 @@ export default function NotFound() {
         </Grid>
       </Grid>
     </CommonLayout>
-  )
+  );
 }

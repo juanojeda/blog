@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   // @/content alias doesn't work for some reason
-  const { frontmatter } = await import('../../../content/' + slug + '.mdx');
+  const { frontmatter } = await import("../../../content/" + slug + ".mdx");
 
   const metadata = {
     title: `Juan Ojeda — ${frontmatter.title}`,
@@ -33,8 +33,10 @@ export default async function Post({ params }) {
   const { slug } = await params;
   // @/content alias doesn't work for some reason
   try {
-    const { default: Post, frontmatter } = await import('../../../content/' + slug + '.mdx');
-    const relatedPosts = await getRelatedPosts(slug)
+    const { default: Post, frontmatter } = await import(
+      "../../../content/" + slug + ".mdx"
+    );
+    const relatedPosts = await getRelatedPosts(slug);
 
     return (
       <CommonLayout fade="10%">
@@ -43,9 +45,7 @@ export default async function Post({ params }) {
         </PostPage>
       </CommonLayout>
     );
-  }
-  catch (e) {
+  } catch (e) {
     notFound();
   }
-
 }
