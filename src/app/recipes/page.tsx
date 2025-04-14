@@ -14,11 +14,11 @@ export async function generateMetadata() {
 }
 
 export default async function RecipesListPage() {
-  const posts = await getRecipes();
+  const recipes = await getRecipes();
 
   return (
     <CommonLayout>
-      <RecipeList posts={posts} />
+      <RecipeList recipes={recipes} />
     </CommonLayout>
   );
 }
