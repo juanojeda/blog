@@ -62,6 +62,9 @@ const RecipeDetail = ({ frontmatter, children }) => {
               sx={{
                 py: 4,
                 px: 4,
+                "& ol li": {
+                  mb: 2,
+                },
               }}
               elevation={0}
             >
