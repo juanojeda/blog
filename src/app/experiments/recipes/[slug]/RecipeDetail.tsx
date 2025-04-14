@@ -15,7 +15,7 @@ import FormattedDate from "@/components/FormattedDate";
 import { Suspense } from "react";
 
 
-const RecipePage = ({ frontmatter, children }) => {
+const RecipeDetail = ({ frontmatter, children }) => {
 
   return (
     <>
@@ -51,4 +51,4 @@ const RecipePage = ({ frontmatter, children }) => {
   );
 };
 
-export default RecipePage;
+export default RecipeDetail;

@@ -7,7 +7,6 @@ import CommonLayout from "@/components/CommonLayout";
 export async function generateStaticParams() {
   const posts = await getPosts();
   const paths = posts.map((post: any) => [{ slug: post.slug }]);
-
   return paths;
 }
 
@@ -31,8 +30,8 @@ export async function generateMetadata({ params }) {
 
 export default async function Post({ params }) {
   const { slug } = await params;
-  // @/content alias doesn't work for some reason
   try {
+    // @/content alias doesn't work for some reason
     const { default: Post, frontmatter } = await import(
       "../../../content/" + slug + ".mdx"
     );
