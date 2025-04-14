@@ -1,5 +1,5 @@
 import { getPosts } from "functions/getPosts";
-import PostPage from "./PostDetail";
+import PostDetail from "./PostDetail";
 import { getRelatedPosts } from "functions/getRelatedPosts";
 import { notFound } from "next/navigation";
 import CommonLayout from "@/components/CommonLayout";
