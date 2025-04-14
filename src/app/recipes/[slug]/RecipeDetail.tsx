@@ -15,10 +15,6 @@ const RecipeMetadata = ({ servings, makes, prepTime, cookTime }) => {
   return (
     <Box
       sx={{
-        display: {
-          xs: "flex",
-          sm: "block",
-        },
         pb: {
           xs: 2,
           md: 0,
