@@ -1,19 +1,8 @@
 "use client";
-import theme from "@/app/theme";
-import {
-  alpha,
-  Box,
-  Grid,
-  Link,
-  List,
-  ListItem,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, Link, List, ListItem, Paper, Stack, Typography } from "@mui/material";
 import FormattedDate from "@/components/FormattedDate";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
+import { FootnoteHighlight } from "@/components/FootnoteHighlight";
 
 type PostLayoutProps = {
   frontmatter: {
@@ -30,46 +19,7 @@ type PostLayoutProps = {
   }[];
 };
 
-const FootnoteHighlight = ({ children }: { children: React.ReactNode }) => {
-  const routerPath = usePathname();
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      window.location.hash = "";
-      setTimeout(() => {
-        window.location.hash = hash;
-      }, 0);
-    }
-  }, [router, routerPath, searchParams]);
-
-  return (
-    <Box
-      sx={{
-        "& [id^=user-content-fn-]:target": {
-          background: alpha(theme.palette.secondary.light, 0.25),
-          borderCollapse: "collapse",
-          "& p": {
-            mb: 0,
-          },
-          "&::after": {
-            content: "''",
-            display: "block",
-            height: theme.spacing(0.25),
-            background: theme.palette.secondary.main,
-            mb: 2,
-          },
-        },
-      }}
-    >
-      {children}
-    </Box>
-  );
-};
-
-const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) => {
+const PostDetail = ({ frontmatter, children, relatedPosts }: PostLayoutProps) => {
   const hasRelatedPosts = relatedPosts && relatedPosts.length > 0;
 
   return (
@@ -143,4 +93,4 @@ const PostLayout = ({ frontmatter, children, relatedPosts }: PostLayoutProps) =>
   );
 };
 
-export default PostLayout;
+export default PostDetail;
