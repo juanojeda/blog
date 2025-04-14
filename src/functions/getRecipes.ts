@@ -2,37 +2,45 @@ import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
 
-const postsDirectory = path.join(process.cwd(), "src/content/recipes");
+export type RecipeFrontmatter = {
+  title: string;
+  tags: string[];
+  prepTime: string;
+  cookTime: string;
+  servings: string;
+  makes: string;
+  summary: string;
+};
+
+export const RECIPES_DIR = path.join(process.cwd(), "src/content/recipes");
+
+export const formatFrontmatter = (frontmatter) => {
+  const formattedFrontmatter: RecipeFrontmatter = {
+    title: frontmatter.title || "",
+    tags: frontmatter.tags || [],
+    prepTime: frontmatter["prep time"] || "",
+    cookTime: frontmatter["cook time"] || "",
+    servings: frontmatter.servings || "",
+    makes: frontmatter.makes || "",
+    summary: frontmatter.summary || "",
+  };
+  return formattedFrontmatter;
+};
+
+export const getRecipeBySlug = (filename) => {
+  const filePath = path.join(RECIPES_DIR, filename);
+  const fileContents = fs.readFileSync(filePath, "utf8");
+  const { data } = matter(fileContents);
+
+  const slug = filename.replace(/\.mdx$/, "");
+  return { ...formatFrontmatter(data), slug };
+};
 
 export const getRecipes = async () => {
-  const filenames = fs.readdirSync(postsDirectory);
-  const posts = filenames
+  const filenames = fs.readdirSync(RECIPES_DIR);
+  const recipes = filenames
     .filter((filename) => /.*.mdx/.test(filename))
-    .map((filename) => {
-      const filePath = path.join(postsDirectory, filename);
-      const fileContents = fs.readFileSync(filePath, "utf8");
-      const {
-        data: {
-          title,
-          tags,
-          "prep time": prepTime,
-          "cook time": cookTime,
-          servings,
-          makes,
-        },
-      } = matter(fileContents);
+    .map((filename) => getRecipeBySlug(filename));
 
-      const slug = filename.replace(/\.mdx$/, "");
-      return {
-        slug,
-        title,
-        prepTime,
-        cookTime,
-        servings,
-        makes,
-        tags: tags || [],
-      };
-    });
-
-  return posts;
+  return recipes;
 };
