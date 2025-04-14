@@ -1,15 +1,8 @@
 "use client";
-import {
-  AppBar,
-  Box,
-  Container,
-  Link,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { AppBar, Box, Container, Link, Paper, Typography } from "@mui/material";
 import React from "react";
 import ResponsiveMenu from "./ResponsiveMenu";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 
 const navItems = [
   { name: "About", path: "/about" },
@@ -22,7 +15,7 @@ const isActive = (path, currentPath) => {
     return true;
   }
   return false;
-}
+};
 
 const SiteHeader = () => {
   const currentPath = usePathname();
@@ -83,27 +76,30 @@ const SiteHeader = () => {
                 color="primary.contrastText"
                 sx={{
                   mx: 1,
-                  ...(isActiveLink ? {
-                    fontStyle: "italic",
-                    "&:after": {
-                      width: "100%", backgroundColor: "primary.contrastText",
-                    }
-                  } : {
-                    "&:after": {
-                      backgroundColor: "primary.light"
-                    }
-                  }),
+                  ...(isActiveLink
+                    ? {
+                        fontStyle: "italic",
+                        "&:after": {
+                          width: "100%",
+                          backgroundColor: "primary.contrastText",
+                        },
+                      }
+                    : {
+                        "&:after": {
+                          backgroundColor: "primary.light",
+                        },
+                      }),
                 }}
               >
                 {item.name}
               </Link>
-            )
+            );
           })}
         </Box>
 
         <ResponsiveMenu navItems={navItems} />
       </Container>
-    </AppBar >
+    </AppBar>
   );
 };
 

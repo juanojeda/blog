@@ -75,7 +75,14 @@ const HomeLayout = () => {
             <WordScroller
               timeoutMs={3000}
               defaultWord="software engineer"
-              otherWords={["design technologist", "UX engineer", "product designer", "tech lead", "problem solver", "home cook"]}
+              otherWords={[
+                "design technologist",
+                "UX engineer",
+                "product designer",
+                "tech lead",
+                "problem solver",
+                "home cook",
+              ]}
             />
             {" in Melbourne, Australia."}
           </Typography>
