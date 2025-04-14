@@ -1,22 +1,8 @@
 "use client";
-import theme from "@/app/theme";
-import {
-  alpha,
-  Box,
-  Grid,
-  Link,
-  List,
-  ListItem,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
-import FormattedDate from "@/components/FormattedDate";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import { Suspense } from "react";
 
-
 const RecipeDetail = ({ frontmatter, children }) => {
-
   return (
     <>
       <Box component={"article"}>
@@ -28,6 +14,7 @@ const RecipeDetail = ({ frontmatter, children }) => {
         >
           <Grid size={12}>
             <Typography sx={{ mb: 0 }} variant="h1">
+              {frontmatter.title}
             </Typography>
           </Grid>
         </Grid>
@@ -40,9 +27,7 @@ const RecipeDetail = ({ frontmatter, children }) => {
               }}
               elevation={0}
             >
-              <Suspense>
-                {children}
-              </Suspense>
+              <Suspense>{children}</Suspense>
             </Paper>
           </Grid>
         </Grid>
