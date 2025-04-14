@@ -39,9 +39,9 @@ export default async function Post({ params }) {
 
     return (
       <CommonLayout fade="10%">
-        <PostPage frontmatter={frontmatter} relatedPosts={relatedPosts}>
+        <PostDetail frontmatter={frontmatter} relatedPosts={relatedPosts}>
           <Post />
-        </PostPage>
+        </PostDetail>
       </CommonLayout>
     );
   } catch (e) {
