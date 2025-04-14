@@ -68,7 +68,7 @@ const HomeLayout = () => {
           display="flex"
           flexDirection="column"
           justifyContent="center"
-          fade="40%"
+          fade="40vh"
         >
           <Typography variant="h1">
             {"I'm a "}

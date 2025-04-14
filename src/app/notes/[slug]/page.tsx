@@ -38,7 +38,7 @@ export default async function Post({ params }) {
     const relatedPosts = await getRelatedPosts(slug);
 
     return (
-      <CommonLayout fade="10%">
+      <CommonLayout fade="20vh">
         <PostDetail frontmatter={frontmatter} relatedPosts={relatedPosts}>
           <Post />
         </PostDetail>

@@ -39,7 +39,7 @@ export default async function NotesListPage({ params }) {
     );
 
     return (
-      <CommonLayout fade="10%">
+      <CommonLayout fade="20vh">
         <RecipeDetail frontmatter={formatFrontmatter(frontmatter)}>
           <Post />
         </RecipeDetail>
