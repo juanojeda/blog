@@ -14,7 +14,8 @@ export const metadata: Metadata = {
     "Personal website of Juan Ojeda, a software engineer and problem solver based in Melbourne, Australia.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+
   return (
     <html lang="en">
       <body className={`${fontClasses}`}>

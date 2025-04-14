@@ -1,28 +1,32 @@
+"use client";
 import {
   AppBar,
   Box,
-  Button,
   Container,
-  Divider,
-  IconButton,
   Link,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
   Paper,
   Typography,
 } from "@mui/material";
 import React from "react";
 import ResponsiveMenu from "./ResponsiveMenu";
+import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { name: "Home", path: "/" },
   { name: "About", path: "/about" },
   { name: "Notes", path: "/notes" },
+  { name: "Recipes", path: "/recipes" },
 ];
 
+const isActive = (path, currentPath) => {
+  if (currentPath.startsWith(path)) {
+    return true;
+  }
+  return false;
+}
+
 const SiteHeader = () => {
+  const currentPath = usePathname();
+
   return (
     <AppBar
       elevation={0}
@@ -69,27 +73,37 @@ const SiteHeader = () => {
         </Link>
 
         <Box sx={{ display: { xs: "none", sm: "block" }, pt: 1 }}>
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.path}
-              variant="h6"
-              color="primary.contrastText"
-              sx={{
-                mx: 1,
-                "&:after": {
-                  backgroundColor: "primary.light",
-                },
-              }}
-            >
-              {item.name}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActiveLink = isActive(item.path, currentPath);
+            return (
+              <Link
+                key={item.name}
+                href={item.path}
+                variant="h6"
+                color="primary.contrastText"
+                sx={{
+                  mx: 1,
+                  ...(isActiveLink ? {
+                    fontStyle: "italic",
+                    "&:after": {
+                      width: "100%", backgroundColor: "primary.contrastText",
+                    }
+                  } : {
+                    "&:after": {
+                      backgroundColor: "primary.light"
+                    }
+                  }),
+                }}
+              >
+                {item.name}
+              </Link>
+            )
+          })}
         </Box>
 
         <ResponsiveMenu navItems={navItems} />
       </Container>
-    </AppBar>
+    </AppBar >
   );
 };
 

@@ -75,7 +75,7 @@ const HomeLayout = () => {
             <WordScroller
               timeoutMs={3000}
               defaultWord="software engineer"
-              otherWords={["product designer", "tech lead", "problem solver"]}
+              otherWords={["design technologist", "UX engineer", "product designer", "tech lead", "problem solver", "home cook"]}
             />
             {" in Melbourne, Australia."}
           </Typography>
@@ -89,8 +89,9 @@ const HomeLayout = () => {
           <Typography variant="h5" component="p">
             {"Or maybe you'd prefer to read some of "}
             <Link variant="h5" href="/notes">
-              my notes.
+              my notes
             </Link>
+            .
           </Typography>
         </HalftoneBox>
       </Grid>
