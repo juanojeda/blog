@@ -1,4 +1,5 @@
 "use client";
+import { FootnoteHighlight } from "@/components/FootnoteHighlight";
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import { Suspense } from "react";
 
@@ -27,7 +28,9 @@ const RecipeDetail = ({ frontmatter, children }) => {
               }}
               elevation={0}
             >
-              <Suspense>{children}</Suspense>
+              <Suspense>
+                <FootnoteHighlight>{children}</FootnoteHighlight>
+              </Suspense>
             </Paper>
           </Grid>
         </Grid>
