@@ -2,7 +2,7 @@ import RecipeDetail from "./RecipeDetail";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CommonLayout from "@/components/CommonLayout";
-import { getRecipes } from "functions/getRecipes";
+import { formatFrontmatter, getRecipes } from "functions/getRecipes";
 
 export async function generateStaticParams() {
   const posts = await getRecipes();
@@ -39,8 +39,8 @@ export default async function NotesListPage({ params }) {
     );
 
     return (
-      <CommonLayout>
-        <RecipeDetail frontmatter={frontmatter}>
+      <CommonLayout fade="10%">
+        <RecipeDetail frontmatter={formatFrontmatter(frontmatter)}>
           <Post />
         </RecipeDetail>
       </CommonLayout>
