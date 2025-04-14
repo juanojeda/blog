@@ -12,7 +12,14 @@ export const getRecipes = async () => {
       const filePath = path.join(postsDirectory, filename);
       const fileContents = fs.readFileSync(filePath, "utf8");
       const {
-        data: { title, tags, "prep time": prepTime, "cook time": cookTime, servings },
+        data: {
+          title,
+          tags,
+          "prep time": prepTime,
+          "cook time": cookTime,
+          servings,
+          makes,
+        },
       } = matter(fileContents);
 
       const slug = filename.replace(/\.mdx$/, "");
@@ -22,6 +29,7 @@ export const getRecipes = async () => {
         prepTime,
         cookTime,
         servings,
+        makes,
         tags: tags || [],
       };
     });
