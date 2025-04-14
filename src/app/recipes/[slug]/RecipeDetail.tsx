@@ -1,7 +1,7 @@
 "use client";
 import { FootnoteHighlight } from "@/components/FootnoteHighlight";
 import { Box, Chip, Grid, Link, Paper, Stack, Typography } from "@mui/material";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 
 const RecipeMetadata = ({ servings, makes, prepTime, cookTime }) => {
   const chipProps = {
@@ -11,7 +11,7 @@ const RecipeMetadata = ({ servings, makes, prepTime, cookTime }) => {
     sx: {
       mr: 1,
     },
-  };
+  } as const as Partial<React.ComponentProps<typeof Chip>>;
   return (
     <Box
       sx={{
