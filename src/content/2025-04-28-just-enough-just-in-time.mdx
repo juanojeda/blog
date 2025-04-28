@@ -1,0 +1,83 @@
+---
+title: Just Enough, Just In Time
+date: 2025-04-28
+summary: An argument for implementing just-in-time story requirement kick-offs over up-front requirements gathering and planning
+tags:
+  - kickoffs
+  - agile
+  - requirements
+  - collaboration
+  - teams
+  - engineering
+  - leadership
+---
+
+Early in my career, I was content with having task requirements given to me in a Jira ticket, and being an executor. I was happiest when I had a Jira card that replaced any conversations I might need to have with designers, product managers, or other engineers. If a task wasn't well defined, I was able to push it back to the designer[^designer], because it wasn't my job to write requirements.
+
+A few problems began to crop up, though. Sometimes the information in a task would be outdated, based on the implementation of a previous piece of work. Other times, I'd start a piece of work only to realise a few days later that it was too big for one ticket. Often I'd get bogged down on a requirement or detail that wasn't even critical to the product's value, yet still blocked shipping. This is not even considering the criminal over-reliance on the designer's time, who usually had such in-depth knowledge of the product or system, but was never available to help due to being busy writing requirements.
+
+Years later, when I see patterns like this emerge (and unfortunately it is still very common) I advocate for a better way – _Just Enough_ detail at planning, followed by _Just In Time_ story kick-offs.
+
+### What does it look like?
+
+At the start of an initiative, when the large piece of work is broken down into tasks, you capture _Just Enough_ detail that describes what the task is about (usually this is an outcome, rather than an artefact or solution). If you're estimating your stories at planning, this should be just enough information to make a very rough sizing.
+
+When the story is ready to be picked up by the next available team member, they huddle together with the key individual contributors (ICs, for short)[^ICs] to define what's in or out of scope, how to test it, when it's done, and any other important considerations.
+
+The group agrees on the requirements and fills out the task card, to the level required, then work begins. Simple.
+
+### Why is this better?
+
+##### Deeper context
+
+When the person working on the task is the one leading the charge in eliciting requirements, it's far more likely they'll understand them. Not only will they understand the context and problem better, but they will have helped shape the solution.
+
+##### Baked-in Agility
+
+Writing the requirements together gives the team a chance to ask questions about value, feasibility, priority, dependencies, and newly-discovered constraints. That last one is especially difficult when you do big definitions up-front!
+
+##### Ownership and collaboration
+
+By giving all ICs ownership of defining the work, and making it a collaborative experience, the team builds a shared standard of quality and a shared "definition of done". No more single points of failure, or locking requirements in one person's mind!
+
+##### Levelling up your team
+
+There's also a hidden trick here that might supercharge your junior- and mid-level team members to seniors – by giving individual team members ownership of the definition for that task, they are learning skills in managing upwards, scope management, asking the right questions, risk mitigation, quality assurance, and so much more. And when the seniors are helping their juniors, they're learning leadership and mentoring – boom!
+
+### What are the risks?
+
+This approach is not without its challenges, and might take a few hiccups before you feel you're nailing it. I'll list some challenges I've seen below, as well as some ways to mitigate them.
+
+##### You don't have the key people in the room, so your task gets blocked
+
+This is probably the most common one, and can be for a lot of reasons, from over-committed team members to a lack of system or stakeholder knowledge within the team.
+
+The truth is that this was probably happening before too, but was invisible because it was a problem only felt by one or two people writing requirements! The upside, however, is that now that the whole team feels the pain, you have a whole team to solve it.
+
+Experienced designers probably have their own ways of getting around this issue, and it's worth asking them to share. My go-to strategy is two-fold:
+
+- **Identify who you'll need up-front** to make decisions or get context, so that you can try to have them there for the kick-off, and
+- **Consider the minimum context you need to get started _safely and responsibly_.** This doesn't mean going in half-cocked with no scope defined or technical questions answered, but it might mean getting started on what you are confident about, and closing the loop with those key people when they're available.
+
+##### Tasks are under-defined, leading to lower-quality delivery
+
+I don't want to down-play the risk of this (I've definitely been bitten by bugs that slip through the cracks because we missed things at kick-off) but there's another hidden trick here that can help super-charge your team's quality and risk capabilities, if you can prepare ahead and have a bit of patience:
+
+- **Allow teams to fail – safely** so that they can learn the value of a well-timed question, and the types of risk present in your system. This doesn't mean ignoring the glaringly obvious, and waiting for it to explode, but rather guiding them to the right questions to ask, and keeping tasks small enough to minimise the blast radius.
+- **Encourage automation and standards** so that the team learns from past failures or near-misses, and leverages the questions that keep popping up. One way to do this is to create kick-off templates, question check-lists, or other such tools, to turbocharge your kick-offs.
+
+##### An uncomfortable change
+
+Another challenge that teams face with this way of working is that it can feel like an uncomfortable change to the status quo. All of a sudden, there is more responsibility on ICs, more of a requirement to collaborate and find their own clarity. Self-driven contributors will, in time, relish the opportunity for more autonomy and ownership of their work, but passive or comfortable team members may find this challenging.
+
+On the flip side, I have seen some designers feel challenged by the loss of the responsibility they once had. With the ownership of requirements in the team's hands, one of their core functions is gone, and without proper communication or context, it might seem like pulling the rug out from under them.
+
+For both of these cases, it's important to take it gently, and keep in mind the reason you're making the change. For ICs, the benefit is the understanding of the task, clarity of context around the task, and "freshness" of the requirements, compared to the old way. For designers, it gives them time to design the important pillars, rather than the details that are subject to change from day to hour to minute. For the team, it creates a communal ownership of, and collaboration towards, the value they create, rather than a culture of delegation.
+
+### A key trait in performing teams
+
+Since experience this small, but radical shift in work model, I now see it as a key trait of high-performing teams. It builds the muscle that allows teams to self-organise around an ambiguous problem, and align towards the agreed-upon value. It's also critical to build in agility into the way of working, as it allows teams to adapt to change. If you're not already, I recommend you try this as an experiment, and see what happens when you do Just Enough, Just In Time.
+
+[^designer]: I use the term designer here in the broad sense, meaning BAs, Architects, product or interface designers - those that plan and design the work that the team builds.
+
+[^ICs]: IC's can be engineers, designers, PM's, BAs, or any kind of team member that contributes to the artefact that goes into the customers' hands, as distinct from the contribution that people or team leaders make.
