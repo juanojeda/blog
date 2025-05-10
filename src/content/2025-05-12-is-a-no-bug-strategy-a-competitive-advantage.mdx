@@ -1,0 +1,52 @@
+---
+title: Is a no-bug strategy a competitive advantage?
+summary: A no-bug strategy is unlikely to yield a competitive advantage. Bugs are acceptable in a product, sometimes.
+date: 2025-05-12
+tags:
+  - product
+  - software
+  - strategy
+  - bugs
+  - quality
+---
+
+The other day I saw a post on LinkedIn[^1] that was talking about the moments in a product that drive users to jump ship. The author then went on to make a bold statement that made me double-take. They said "any level of bugs in a product is unacceptable". The sentiment was then backed up by a comment that said "a no bugs at release strategy would be a competitive advantage".
+
+My initial gut reaction was to disagree with both of these statements, but I wanted to question this instinct and really assess my foundations for thinking this. Here's my thinking so far.
+
+The definition I'll use[^2]:
+
+- A bug is a behaviour of the system that doesn't align with the intended design, and
+- A bug may cause an undesired result, or impair the user's ability to achieve the intended result
+
+## A zero-bug strategy is unlikely to yield a competitive advantage
+
+While I strongly believe that shipping high-quality software is vital to building a competitive product, I don't think a zero-bug strategy is a competitive advantage. A product strategy should focus on the things that solve your customer problems and meet your business objectives. I do believe that high-quality software and design are important to customer satisfaction, but I don't believe a focus on zero bugs will win the race.
+
+Let's take a hypothetical situation where a company has employed a zero-bug strategy in their product. They have just shipped a feature, and they're about to start working on the next opportunity. Then a bug rears its head in production, and development would freeze.
+
+In a zero-bug strategy, the company would be forced to delay work on feature 2 until the bug was resolved, regardless of its comparative value, impact, or effort to resolve. Solving the bug might mean spending days or weeks of rewriting code, even if the bug only affects a handful of users in a non-critical use case. All the while, the company's competitors could be solving more of the customer's problems.
+
+Even if the company had enough engineers that work could continue on feature 2 while the bug was being resolved, the point remains. A hardline commitment to zero bugs prevents the company from focusing on business objectives and customer value, and doesn't allow for a nuanced comparison of priority.
+
+## Bugs are acceptable in a product, sometimes
+
+While bugs are, by definition, not the intended outcome of the work, I do still believe that there are cases where you might accept them in your product. It comes down to an assessment of product value and impact.
+
+When I'm determining whether to delay shipping a feature, or to prioritise fixing a bug, I usually go through the following list of questions.
+
+- Is there is a work-around, and can the affected user still achieve their goals?
+- Does the bug impact a high-value user journey for your product?
+- Does the impact a large portion of users, or a high-value portion of users?
+- Is the effort of fixing the bug worth the value that it unlocks?
+- Is this bug the most important thing the team could focus on?
+
+The nature of bugs is that they require time, investigation, and effort to even identify a solution, and sometimes the solution requires large rewrites or costly mitigations. Therefore, the goal of asking these questions isn't to get out of doing work, but to make sure I'm focusing on the highest-value work. Sometimes, the best approach to a bug is to identify it, document it, and leave it for now.
+
+[^1]: I've tried finding the article using LinkedIn's search, but haven't had any luck. If I find it, I'll update the post.
+
+[^2]: based on these definitions:
+
+    - [Wikipedia](<https://en.wikipedia.org/wiki/Bug_(engineering)>)
+    - [ISTBQ Glossary](https://glossary.istqb.org/en_US/term/defect?term=defect&exact_matches_first=true) - I'm aware that bugs and defects aren't always synonymous, but for this case I think it's a fair simplification
+    - [Merriam Webster](https://www.merriam-webster.com/dictionary/bug)
