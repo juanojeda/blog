@@ -1,0 +1,124 @@
+---
+title: Augmented AI Coding
+summary: In which I outline the most recent experiment with an AI replacing me as an engineer (and as a product owner!)
+date: 2025-07-03
+tags:
+  - ai
+  - chatgpt
+  - product
+  - software-development
+  - TDD
+  - quality
+---
+
+The last couple of weeks I've been experimenting with Augmented AI development. By all accounts, AI in programming is one of the biggest advances in the history of the field – probably on the order of magnitude of byte code to languages. I wanted to better understand where it might fit into an engineer's workflow, and to see how much a human is needed in the loop (spoiler: it's not none!).
+
+## The inspiration
+
+Part of the inspiration for this line of experimentation comes from my bench-time project[^1], which was to see what kind of quality an AI engineer agent could produce when given tasks with different levels and types of constraints.
+
+The other massive inspiration[^2] was following Kent Beck's work on LinkedIn, and seeing his [latest article](https://tidyfirst.substack.com/p/augmented-coding-beyond-the-vibes) about the topic of Augmented Coding. When the creator of Extreme Programming, and leading TDD evangelist, has something to say about programming with an LLM, you know I'm going to listen!
+
+## The hypothesis
+
+With the goal being to see what kind of team an LLM agent and a human might make, my hypothesis could look something like:
+
+> Given a set of requirements by a product designer, an LLM agent can produce high quality code that meets the product aims
+
+and I might also add
+
+> ... with minimal human intervention.
+
+## The setup
+
+I have a recurring toy project that I tend to use whenever I am trying to learn a new programming language, methodology, or paradigm - a recipe creation and collection tool. It ticks a few criteria that I think are important for real learning:
+
+- It has a real, well-defined use case
+- It's a full-stack problem space, from user experience to database management to deployment
+- I'm passionate about it, which means I care about getting it right, and about shipping quickly
+
+For this iteration of the recipe app, I came up with these high-level user stories that I've been mulling over for a while:
+
+- The app allows me to write a recipe
+- I can see all my recipes
+- I can add notes to a recipe
+- I can modify the recipe itself
+- I can get a shopping list for a single recipe
+- I can create a meal plan for a week, based on my recipes
+- I can get a shopping list based on the meal plan
+- The app allows me to give it a url, and save a recipe from the url
+
+These requirements seemed like a good balance between small toy app, and big app that tests the boundaries of the workflow and the LLM.
+
+## My approach
+
+### Prompt archaeology
+
+One of the things I knew I wanted to do with this experiment was to keep my prompts in the git repository, sequentially numbered, and descriptively named.
+
+Eg. `0016-ensure-tests-can-run-based-on-env.md`
+
+Even though I know that LLMs are non-deterministic, I am reminded of a chat with my colleague Martin, where he alluded to this as a way to reconstruct the story of the app, in a similar vein to being an archaeologist or historian.
+
+In this experiment, I have been fairly strict about:
+
+- Writing a prompt and storing it in the prompts folder
+- Using the "chat" to execute the prompt. In Cursor, this looks like copying the prompt file into context, and telling the chat to "execute this prompt", but I imagine it could just be copying the prompt and pasting it into CoPilot Chat or Claude.
+- When the agent gave options, simply saying "yes" or "continue" – the experiment is partly about identifying what human intervention is required, so I try to let the agent make its best judgement call.
+- When the agent got it wrong, veered off track, or asked for more context, bail out early and rewrite the saved prompt to give it the right kind of context.
+
+In the rest of this post, whenever I refer to prompts just keep in mind that I'm writing them and saving them in this folder.
+
+### Role-based agents
+
+I followed Kent Beck's model[^3] of giving my LLM a persona of a senior software engineer that follows TDD methodology, and writes the smallest code it can to meet the test requirements. The aim is to ensure high quality code, that doesn't do too much, and is well tested. I call this my Software Engineer role.
+
+I also extended on this model by creating something like a product owner / BA / tech lead hybrid model – let's call it the Planner role – whose goal was to take my high-level requirements and translate them specifically for the Software Engineer role. This results in requirements that are stored in the repo, for archaeology purposes. This role also creates the project plan that the Software Engineer role looks at for its next piece of work, and helps with dependencies and prioritisation.
+
+### Working from the plan and requirements
+
+The workflow in this experiment has roughly followed this process:
+
+#### Generating the plan
+
+- Feed the Planner role my high level requirements
+- The planner role creates the requirements, and the delivery plan
+- I review the output of the requirements, and decide whether to tweak my high-level requirements for better output, or
+- I write a new prompt to amend the requirements and plan
+
+#### Developing from the plan
+
+- I tell the chat to act as the Software Engineer, and build what's next in the plan
+- The Software Engineer writes code following the TDD process until the feature is complete
+- I review its output, and decide whether it's good enough, or whether I need to tweak the requirements further (through another prompt)
+- The Software Engineer writes a commit for the code, and updates the plan
+
+#### Testing the work, modifying the plan
+
+- When there's a feature that's ready for me to test, I spin up the environment and test it out
+- If there's a bug, I write a prompt that documents it, and ask the Planner to document it and add it into the plan.
+- If the bug is high priority, I ask the Software Engineer to fix it. Otherwise it sits in the plan for future attention
+- After testing the feature, I might decide that the requirement needs tweaking, so I write another prompt for the Planner to add or amend requirements, and modify the plan accordingly
+
+## Observations
+
+This process has been eye opening. It's a far cry from when I first tried to involve AI into my engineering process, and it has really made me re-evaluate what it might look like to be a developer in the future. These are some thoughts I've had throughout this process:
+
+- There's definitely still a human in the loop, but the way I "program" is very different. Instead of writing code, I'm documenting high-level product requirements, architectural decisions, and ways of working, while the agents use these to produce the product itself.
+- I don't know if this is representative of the way that everyone will develop code, or just a reflection of the way I want to work.
+- I'm enjoying this model because it allows me to zoom in and out of the various levels of detail on the project, from the reason for a code style decision, to a reason for adding a feature set – all documented and traceable.
+- It feels like an analogy for team forming. The first few prompts' worth of work was tedious, and it was hard to shake the urge to just get in there myself. Now that I've ironed out the kinks in the process though, I feel much faster.
+- Even though I'm not writing the code, I still feel like I am deep enough into the detail where I have a grasp of how it works and why, and I could work on it myself if I needed to. This is in part because I chose a tech stack I'm familiar with, but I think also because of the way that the work is sliced with this method, and the many opportunities for reviewing output (which I'm diligent about).
+
+## Follow up experiments
+
+Other things I'd like to try, when I get a chance:
+
+- Could I totally remove myself from the loop, beyond the initial requirements? How much would I need to give it up front? Could it still be high quality?
+- How might it look if I repeated this exercise with a different tech stack – one I wasn't familiar with? Would I feel confident to review the output? Could I augment that process too? Could I feel confident about the quality?
+
+[^1]: As a consultant, when I don't have a client or project to work on, I'm directed on different internal projects, experiments, or training assignments.
+
+[^2]: As I write this post, I realise that a lot of credit goes to Kent Beck's approach, with my own minor tweaks.
+
+[^3]: He offers his System Prompt in [his article](https://tidyfirst.substack.com/i/166781850/appendix-system-prompt) and though I've made minor adjustments, this is a great base to work from.
