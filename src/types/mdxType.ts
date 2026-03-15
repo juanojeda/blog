@@ -1,6 +1,7 @@
 export type Frontmatter = {
   title: string;
   summary?: string;
+  socialPost?: string;
   date?: string;
   tags?: string[];
 };

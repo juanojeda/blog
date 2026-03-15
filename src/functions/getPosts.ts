@@ -12,7 +12,7 @@ export const getPosts = async () => {
       const filePath = path.join(postsDirectory, filename);
       const fileContents = fs.readFileSync(filePath, "utf8");
       const {
-        data: { title, date, tags, summary },
+        data: { title, date, tags, summary, socialPost },
       } = matter(fileContents);
       const slug = filename.replace(/\.mdx$/, "");
       return {
@@ -21,6 +21,7 @@ export const getPosts = async () => {
         date,
         tags: tags || [],
         summary,
+        socialPost,
       };
     })
     .sort(({ date: aDate }, { date: bDate }) => (aDate > bDate ? -1 : 1));
