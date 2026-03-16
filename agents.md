@@ -53,7 +53,7 @@ src/
 ### Notes (blog posts)
 - Location: `src/content/*.mdx`
 - Filename convention: `YYYY-MM-DD-slug.mdx`
-- Frontmatter fields: `title`, `date`, `tags` (array), `summary`
+- Frontmatter fields: `title`, `date`, `tags` (array), `summary`, `socialPost` (optional, overrides `summary` in RSS feed)
 - Accessed via: `getPosts()` (list), dynamic `import("../../../content/" + slug + ".mdx")` (detail)
 
 ### Recipes
@@ -72,8 +72,33 @@ src/
 | `/recipes` | `src/app/recipes/page.tsx` | Recipe list |
 | `/recipes/[slug]` | `src/app/recipes/[slug]/page.tsx` | Recipe detail, statically generated |
 | `/posts/:slug` | — | Redirects permanently to `/notes/:slug` |
+| `/rss.xml` | `src/app/rss.xml/route.ts` | RSS 2.0 feed (notes only), statically generated |
 
 All content pages use `generateStaticParams` for build-time static generation.
+
+## RSS Feed & Social Posting
+
+The blog exposes an RSS 2.0 feed at `/rss.xml` (implemented in `src/app/rss.xml/route.ts`). It is statically generated at build time and covers notes only (not recipes).
+
+Each `<item>` includes:
+- `<title>` — post `title`
+- `<description>` — post `socialPost` frontmatter field if present, otherwise falls back to `summary`
+- `<link>` / `<guid>` — absolute URL to the note (`https://www.juanojeda.com/notes/<slug>`)
+- `<pubDate>` — post `date` in RFC 822 format
+
+### `socialPost` frontmatter field
+
+Notes support an optional `socialPost: string` frontmatter field. When present, it is used as the RSS `<description>` instead of `summary`, allowing per-post customisation of the LinkedIn post body without changing the on-site summary.
+
+### Zapier integration
+
+A Zapier Zap watches the RSS feed and automatically creates a LinkedIn post when a new item appears:
+- **Trigger**: "New Item in Feed" (RSS by Zapier) → `https://www.juanojeda.com/rss.xml`
+- **Action**: "Create Share Update" (LinkedIn) — uses `title`, `description`, and `link` from the feed item
+
+New notes are shared to LinkedIn automatically on deploy with no manual steps. Zapier polls approximately every 15 minutes (free tier).
+
+See `docs/adrs/0001-linkedin-post-scheduling-via-zapier-rss.md` for the full decision record.
 
 ## CI/CD & Deployment
 
@@ -106,6 +131,7 @@ Deployment is handled entirely by **Netlify's Git integration** — there are no
 - **No test suite** currently exists in the project.
 - **Linting/formatting**: ESLint (`eslint-config-next` + `eslint-config-prettier`) and Prettier. Run `npm run lint` and `npm run format`.
 - **TypeScript**: Strict mode off; `tsconfig.json` uses path aliases `@/*` → `src/*` and `functions/*` → `src/functions/*`.
+- **Spec tracking**: When implementing a spec, update its TODO checkboxes as items are completed, and update the section status (e.g. `planned` → `in progress` / `done`) and the top-level `Status` field as work progresses. The top-level status is `in progress` if any TODO items remain unchecked; it becomes `done` only when all TODO items across all sections are checked.
 
 ## Running the Project
 

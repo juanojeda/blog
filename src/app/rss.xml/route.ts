@@ -7,7 +7,15 @@ export const dynamic = "force-static";
 export async function GET() {
   const posts = await getPosts();
 
+  const today = new Date().toISOString().slice(0, 10);
+
   const items = posts
+    .filter(({ date }) => {
+      if (!date) return true;
+      const dateStr =
+        date instanceof Date ? date.toISOString().slice(0, 10) : String(date);
+      return dateStr <= today;
+    })
     .map(({ slug, title, summary, socialPost, date }) => {
       const link = `${SITE_URL}/notes/${slug}`;
       const description = socialPost ?? summary ?? "";
