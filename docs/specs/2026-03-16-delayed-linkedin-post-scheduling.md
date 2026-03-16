@@ -1,7 +1,7 @@
 # Delayed LinkedIn Post Scheduling - Spec document
 
 ---
-Status: in progress
+Status: done
 Last updated: 2026-03-16
 ---
 
@@ -80,7 +80,7 @@ Netlify Build Hook ──► rebuild ──► new /rss.xml with newly eligible 
 4. Change `date` to yesterday's date, rebuild, confirm the note appears
 5. Confirm all existing posts (dates in the past) still appear — no regressions
 
-### 2 - Scheduled rebuild via GitHub Actions - in progress
+### 2 - Scheduled rebuild via GitHub Actions - done
 
 #### TODO list
 - [x] Create a Netlify Build Hook in the Netlify dashboard for the production site
