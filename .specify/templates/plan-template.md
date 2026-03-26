@@ -31,7 +31,23 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+Verify each gate against the [juan-blog Constitution](.specify/memory/constitution.md):
+
+| Gate | Principle | Status |
+|------|-----------|--------|
+| New post/content authorable without code changes | I. Content as First-Class Citizen | ☐ |
+| No hardcoded copy in components; content flows via props or MDX | I. Content as First-Class Citizen | ☐ |
+| Optional frontmatter fields have graceful fallbacks | I. Content as First-Class Citizen | ☐ |
+| Body content arrives in initial HTML (no client-side-only render) | II. Reader-First UX | ☐ |
+| Page navigable without JavaScript | II. Reader-First UX | ☐ |
+| All content routes use `generateStaticParams` | III. Static Generation by Default | ☐ |
+| Dynamic rendering justified by ADR (if applicable) | III. Static Generation by Default | ☐ |
+| `npm run build` passes without errors | III. Static Generation by Default | ☐ |
+| Adding new content type follows `getPosts`/`getRecipes` pattern | IV. Developer & Author Ergonomics | ☐ |
+| Lint and format pass (`npm run lint`, `npm run format`) | IV. Developer & Author Ergonomics | ☐ |
+| Visual changes isolated from content changes | V. UI Adaptability & Composability | ☐ |
+| New components accept content via props; theme used for styling | V. UI Adaptability & Composability | ☐ |
+| Stack additions (new libs, hosting changes) covered by ADR | Tech Stack Constraints | ☐ |
 
 ## Project Structure
 
